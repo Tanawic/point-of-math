@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Nav from '@/components/nav'
 import Footer from '@/components/footer'
+import FloatingCTA from '@/components/floating-cta'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -26,6 +27,7 @@ export default function RootLayout({
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <FloatingCTA />
       </body>
     </html>
   )
