@@ -7,8 +7,14 @@ import type { Sheet, Topic } from '@/lib/sheets'
 
 type Filter = Topic | 'All'
 
-const topicCount = (sheets: Sheet[], topic: Topic) =>
-  sheets.filter((s) => s.topic === topic).length
+const topicLabel: Record<Filter, string> = {
+  All:              'ทั้งหมด',
+  'Number Theory':  'Number Theory',
+  'Algebra':        'Algebra',
+  'Geometry':       'Geometry',
+  'Combinatorics':  'Combinatorics',
+  'Logic':          'Logic',
+}
 
 export default function SheetsClient({ sheets }: { sheets: Sheet[] }) {
   const [active, setActive] = useState<Filter>('All')
@@ -18,33 +24,33 @@ export default function SheetsClient({ sheets }: { sheets: Sheet[] }) {
     [sheets, active]
   )
 
+  const countFor = (t: Filter) =>
+    t === 'All' ? sheets.length : sheets.filter((s) => s.topic === t).length
+
   return (
     <div>
-      {/* Topic tabs */}
-      <div className="flex flex-wrap gap-2 mb-10 border-b border-rule pb-8">
-        {TOPICS.map((t) => {
-          const count = t === 'All' ? sheets.length : topicCount(sheets, t)
-          return (
-            <button
-              key={t}
-              onClick={() => setActive(t)}
-              className={`text-[11px] uppercase tracking-widest px-4 py-2 border transition-colors flex items-center gap-2 ${
-                active === t
-                  ? 'bg-ink text-paper border-ink'
-                  : 'border-rule text-ink hover:border-ink'
-              }`}
-            >
-              {t === 'All' ? 'ทั้งหมด' : t}
-              <span className={`text-[10px] ${active === t ? 'text-paper/60' : 'text-muted'}`}>
-                {count}
-              </span>
-            </button>
-          )
-        })}
+      {/* Topic filter pills */}
+      <div className="flex flex-wrap gap-2 mb-10 pb-8 border-b border-rule">
+        {TOPICS.map((t) => (
+          <button
+            key={t}
+            onClick={() => setActive(t)}
+            className={`font-mono text-[11px] uppercase tracking-widest px-4 py-2.5 border transition-colors flex items-center gap-2 ${
+              active === t
+                ? 'bg-ink text-paper border-ink'
+                : 'border-rule text-muted hover:border-ink hover:text-ink'
+            }`}
+          >
+            {topicLabel[t]}
+            <span className={`text-[10px] ${active === t ? 'text-paper/50' : 'text-muted/60'}`}>
+              {countFor(t)}
+            </span>
+          </button>
+        ))}
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+      {/* Sheet grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
         {filtered.map((s) => (
           <SheetCard
             key={s.slug}
@@ -59,8 +65,8 @@ export default function SheetsClient({ sheets }: { sheets: Sheet[] }) {
       </div>
 
       {filtered.length === 0 && (
-        <div className="border border-dashed border-rule px-5 py-16 text-center">
-          <p className="text-[13px] text-muted">ไม่พบแบบฝึกหัดในหัวข้อนี้</p>
+        <div className="border border-dashed border-rule px-6 py-16 text-center">
+          <p className="font-sans text-[13px] text-muted">ไม่พบแบบฝึกหัดในหัวข้อนี้</p>
         </div>
       )}
     </div>

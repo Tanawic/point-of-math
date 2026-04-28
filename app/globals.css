@@ -3,10 +3,52 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-paper text-ink font-sans;
+  html {
+    scroll-behavior: smooth;
   }
-  * {
-    box-sizing: border-box;
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    @apply bg-ink text-paper;
+  }
+
+  /* FAQ open animation */
+  details > div {
+    animation: faqOpen 0.22s ease-out both;
+  }
+
+  @keyframes faqOpen {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animated nav underline */
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #0A0A0A;
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after {
+    width: 100%;
   }
 }

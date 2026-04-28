@@ -10,24 +10,31 @@ export const metadata: Metadata = {
 export default function PapersPage() {
   return (
     <div>
-      {/* Header */}
-      <section className="border-b border-rule">
-        <div className="mx-auto max-w-6xl px-6 md:px-10 py-16">
-          <div className="text-[11px] uppercase tracking-widest text-muted">
+      <section className="border-b border-rule relative overflow-hidden">
+        {/* Decorative background symbol */}
+        <div
+          className="absolute right-10 top-1/2 -translate-y-1/2 font-mono text-[180px] leading-none text-ink pointer-events-none select-none hidden md:block"
+          style={{ opacity: 0.03 }}
+          aria-hidden
+        >
+          □
+        </div>
+
+        <div className="relative mx-auto max-w-6xl px-6 md:px-10 py-16">
+          <div className="font-mono text-[11px] uppercase tracking-widest text-muted">
             Section · Past Papers
           </div>
-          <h1 className="mt-4 text-[36px] md:text-[56px] leading-none font-bold uppercase tracking-tight text-ink">
+          <h1 className="mt-4 font-serif italic text-[48px] md:text-[72px] leading-[0.95] text-ink">
             Past Papers
           </h1>
-          <div className="mt-6 h-px w-full bg-ink" />
-          <p className="mt-6 text-[14px] tracking-wide text-muted max-w-2xl">
+          <div className="mt-8 h-px w-full bg-ink" />
+          <p className="mt-6 font-sans text-[15px] text-muted leading-relaxed max-w-xl">
             รวมข้อสอบเก่าจากการสอบแข่งขันคณิตศาสตร์ทั้งในและต่างประเทศ
-            เลือกชุดที่ต้องการแล้วดาวน์โหลดเป็น PDF.
+            ดาวน์โหลดเป็น PDF ได้เลย ฟรีทุกชุด.
           </p>
         </div>
       </section>
 
-      {/* Client: search + filter + list */}
       <section>
         <div className="mx-auto max-w-6xl px-6 md:px-10 py-16">
           <PapersClient groups={paperGroups} />
