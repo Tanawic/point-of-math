@@ -1,0 +1,282 @@
+export type Level = 'Middle School' | 'High School' | 'Olympiad' | 'Undergraduate'
+export type Region = 'Thailand' | 'International' | 'Asia-Pacific' | 'USA' | 'Europe' | 'Online'
+
+export interface Competition {
+  id: string
+  name: string
+  nameThai?: string
+  description: string
+  level: Level
+  region: Region
+  topics: string[]
+  url: string               // official / primary link
+  aopsUrl?: string          // AoPS wiki / solutions page
+  difficulty: 1 | 2 | 3 | 4 | 5  // 1=easy, 5=hardest
+}
+
+export type Category = {
+  id: string
+  label: string
+  labelThai: string
+  competitions: Competition[]
+}
+
+export const CATEGORIES: Category[] = [
+  {
+    id: 'thailand',
+    label: 'Thai Competitions',
+    labelThai: 'การแข่งขันในประเทศ',
+    competitions: [
+      {
+        id: 'soawn',
+        name: 'สอวน. คณิตศาสตร์',
+        nameThai: 'สอวน. ค่าย 1 & ค่าย 2',
+        description: 'การคัดเลือกเพื่อเข้าค่ายโอลิมปิกวิชาการ — ข้อสอบรอบแรกและรอบสอง',
+        level: 'Olympiad',
+        region: 'Thailand',
+        topics: ['Number Theory', 'Algebra', 'Geometry', 'Combinatorics'],
+        url: 'https://www.posn.or.th/th/competition/science/math',
+        aopsUrl: 'https://artofproblemsolving.com/community/c558627',
+        difficulty: 4,
+      },
+      {
+        id: 'pat1',
+        name: 'PAT 1',
+        nameThai: 'ความถนัดทางคณิตศาสตร์',
+        description: 'ข้อสอบ TCAS ความถนัดคณิตศาสตร์ — สอบโดย สทศ. (NIETS)',
+        level: 'High School',
+        region: 'Thailand',
+        topics: ['Algebra', 'Calculus', 'Statistics', 'Geometry'],
+        url: 'https://www.niets.or.th/th/catalog/view/28',
+        difficulty: 2,
+      },
+      {
+        id: 'kvis',
+        name: 'KVIS / PSIT / KSSS',
+        nameThai: 'โรงเรียนวิทยาศาสตร์ กพว.',
+        description: 'ข้อสอบคัดเลือกเข้าโรงเรียนวิทยาศาสตร์ — เน้น Pattern Recognition และ Problem Solving',
+        level: 'Middle School',
+        region: 'Thailand',
+        topics: ['Logic', 'Algebra', 'Number Theory', 'Geometry'],
+        url: 'https://www.kvis.ac.th',
+        difficulty: 2,
+      },
+      {
+        id: 'pcsn',
+        name: 'พสวท.',
+        nameThai: 'โครงการพัฒนาและส่งเสริมผู้มีความสามารถพิเศษ',
+        description: 'ข้อสอบคัดเลือกนักเรียนทุน พสวท. ระดับ ม.ต้น และ ม.ปลาย',
+        level: 'High School',
+        region: 'Thailand',
+        topics: ['Algebra', 'Geometry', 'Number Theory'],
+        url: 'https://www.posn.or.th',
+        difficulty: 3,
+      },
+    ],
+  },
+  {
+    id: 'international-olympiad',
+    label: 'International Olympiads',
+    labelThai: 'โอลิมปิกนานาชาติ',
+    competitions: [
+      {
+        id: 'imo',
+        name: 'IMO',
+        nameThai: 'International Mathematical Olympiad',
+        description: 'การแข่งขันคณิตศาสตร์โอลิมปิกระดับโลก — 6 ข้อ ใน 2 วัน ยากที่สุดในโลก',
+        level: 'Olympiad',
+        region: 'International',
+        topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+        url: 'https://www.imo-official.org/problems.aspx',
+        aopsUrl: 'https://artofproblemsolving.com/wiki/index.php/IMO_Problems_and_Solutions',
+        difficulty: 5,
+      },
+      {
+        id: 'apmo',
+        name: 'APMO',
+        nameThai: 'Asian Pacific Mathematics Olympiad',
+        description: 'โอลิมปิกระดับภูมิภาคเอเชีย-แปซิฟิก — ขั้นกลางระหว่าง สอวน. และ IMO',
+        level: 'Olympiad',
+        region: 'Asia-Pacific',
+        topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+        url: 'https://www.apmo-official.org/problems_and_solutions',
+        aopsUrl: 'https://artofproblemsolving.com/wiki/index.php/APMO_Problems_and_Solutions',
+        difficulty: 4,
+      },
+      {
+        id: 'egmo',
+        name: 'EGMO',
+        nameThai: 'European Girls\' Mathematical Olympiad',
+        description: 'โอลิมปิกคณิตศาสตร์สำหรับนักเรียนหญิงระดับยุโรป — ระดับใกล้เคียง IMO',
+        level: 'Olympiad',
+        region: 'Europe',
+        topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+        url: 'https://www.egmo.org/egmos/',
+        aopsUrl: 'https://artofproblemsolving.com/wiki/index.php/EGMO_Problems_and_Solutions',
+        difficulty: 4,
+      },
+      {
+        id: 'usamo',
+        name: 'USAMO',
+        nameThai: 'USA Mathematical Olympiad',
+        description: 'โอลิมปิกสหรัฐฯ — ข้อสอบพิสูจน์ระดับสูง ใช้คัดทีม IMO ของ USA',
+        level: 'Olympiad',
+        region: 'USA',
+        topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+        url: 'https://artofproblemsolving.com/wiki/index.php/USAMO_Problems_and_Solutions',
+        aopsUrl: 'https://artofproblemsolving.com/wiki/index.php/USAMO_Problems_and_Solutions',
+        difficulty: 5,
+      },
+      {
+        id: 'balkan-mo',
+        name: 'Balkan MO',
+        nameThai: 'Balkan Mathematical Olympiad',
+        description: 'โอลิมปิกระดับภูมิภาคบอลข่าน — ยากกว่า APMO เล็กน้อย เหมาะเตรียม IMO',
+        level: 'Olympiad',
+        region: 'Europe',
+        topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+        url: 'https://artofproblemsolving.com/wiki/index.php/Balkan_MO_Problems_and_Solutions',
+        aopsUrl: 'https://artofproblemsolving.com/wiki/index.php/Balkan_MO_Problems_and_Solutions',
+        difficulty: 4,
+      },
+    ],
+  },
+  {
+    id: 'usa-competitions',
+    label: 'USA Competitions',
+    labelThai: 'การแข่งขันอเมริกา (AMC / AIME)',
+    competitions: [
+      {
+        id: 'amc8',
+        name: 'AMC 8',
+        nameThai: 'American Mathematics Competition 8',
+        description: 'สำหรับ ม.ต้น — 25 ข้อ ปรนัย 40 นาที เน้น Problem Solving พื้นฐาน',
+        level: 'Middle School',
+        region: 'USA',
+        topics: ['Algebra', 'Geometry', 'Number Theory', 'Logic'],
+        url: 'https://artofproblemsolving.com/wiki/index.php/AMC_8_Problems_and_Solutions',
+        aopsUrl: 'https://artofproblemsolving.com/wiki/index.php/AMC_8_Problems_and_Solutions',
+        difficulty: 1,
+      },
+      {
+        id: 'amc10',
+        name: 'AMC 10',
+        nameThai: 'American Mathematics Competition 10',
+        description: 'สำหรับ ม.ปลาย — 30 ข้อ ปรนัย 75 นาที เส้นทางสู่ AIME และ USAMO',
+        level: 'High School',
+        region: 'USA',
+        topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+        url: 'https://artofproblemsolving.com/wiki/index.php/AMC_10_Problems_and_Solutions',
+        aopsUrl: 'https://artofproblemsolving.com/wiki/index.php/AMC_10_Problems_and_Solutions',
+        difficulty: 2,
+      },
+      {
+        id: 'amc12',
+        name: 'AMC 12',
+        nameThai: 'American Mathematics Competition 12',
+        description: 'ระดับเดียวกับ AMC 10 แต่ครอบคลุม Pre-Calculus — ยากกว่าเล็กน้อย',
+        level: 'High School',
+        region: 'USA',
+        topics: ['Algebra', 'Geometry', 'Trigonometry', 'Number Theory', 'Combinatorics'],
+        url: 'https://artofproblemsolving.com/wiki/index.php/AMC_12_Problems_and_Solutions',
+        aopsUrl: 'https://artofproblemsolving.com/wiki/index.php/AMC_12_Problems_and_Solutions',
+        difficulty: 3,
+      },
+      {
+        id: 'aime',
+        name: 'AIME',
+        nameThai: 'American Invitational Mathematics Examination',
+        description: '15 ข้อ กรอกคำตอบเป็นตัวเลข 0–999 — ขั้นกลางระหว่าง AMC และ USAMO',
+        level: 'High School',
+        region: 'USA',
+        topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+        url: 'https://artofproblemsolving.com/wiki/index.php/AIME_Problems_and_Solutions',
+        aopsUrl: 'https://artofproblemsolving.com/wiki/index.php/AIME_Problems_and_Solutions',
+        difficulty: 3,
+      },
+      {
+        id: 'hmmt',
+        name: 'HMMT',
+        nameThai: 'Harvard-MIT Math Tournament',
+        description: 'การแข่งขันทีมจาก Harvard & MIT — ข้อสอบสร้างสรรค์ระดับสูง',
+        level: 'High School',
+        region: 'USA',
+        topics: ['Algebra', 'Geometry', 'Combinatorics', 'Number Theory'],
+        url: 'https://www.hmmt.org/archive/',
+        aopsUrl: 'https://artofproblemsolving.com/community/c594864',
+        difficulty: 4,
+      },
+      {
+        id: 'mathcounts',
+        name: 'MATHCOUNTS',
+        nameThai: 'MATHCOUNTS Competition',
+        description: 'สำหรับ ม.ต้น — Sprint, Target, Team rounds เน้นความเร็วและแม่นยำ',
+        level: 'Middle School',
+        region: 'USA',
+        topics: ['Algebra', 'Geometry', 'Number Theory', 'Logic'],
+        url: 'https://www.mathcounts.org/resources',
+        aopsUrl: 'https://artofproblemsolving.com/wiki/index.php/MATHCOUNTS',
+        difficulty: 2,
+      },
+    ],
+  },
+  {
+    id: 'online',
+    label: 'Online Resources',
+    labelThai: 'แหล่งฝึกออนไลน์',
+    competitions: [
+      {
+        id: 'aops-wiki',
+        name: 'AoPS Wiki',
+        nameThai: 'Art of Problem Solving — Problem Archive',
+        description: 'คลังข้อสอบแข่งขันทุกรายการ พร้อมเฉลยจาก community — แหล่งใหญ่ที่สุดในโลก',
+        level: 'High School',
+        region: 'Online',
+        topics: ['All Topics'],
+        url: 'https://artofproblemsolving.com/wiki/index.php/AMC_Problems_and_Solutions',
+        difficulty: 3,
+      },
+      {
+        id: 'aops-community',
+        name: 'AoPS Community',
+        nameThai: 'Art of Problem Solving — Forum',
+        description: 'ฟอรัมคณิตศาสตร์ที่ใหญ่ที่สุดในโลก — ถาม/ตอบ และแชร์ข้อสอบแข่งขัน',
+        level: 'High School',
+        region: 'Online',
+        topics: ['All Topics'],
+        url: 'https://artofproblemsolving.com/community/c13_contests',
+        difficulty: 3,
+      },
+      {
+        id: 'nrich',
+        name: 'NRICH',
+        nameThai: 'NRICH Mathematics',
+        description: 'โจทย์คณิตศาสตร์ไม่มาตรฐาน เน้น Problem Solving จาก University of Cambridge',
+        level: 'Middle School',
+        region: 'Online',
+        topics: ['Logic', 'Algebra', 'Geometry', 'Combinatorics'],
+        url: 'https://nrich.maths.org/secondary',
+        difficulty: 2,
+      },
+      {
+        id: 'imo-shortlist',
+        name: 'IMO Shortlist',
+        nameThai: 'IMO Shortlist Problems',
+        description: 'ข้อสอบที่ผ่านรอบคัดเลือกแต่ไม่ได้ใช้จริง — ยากระดับ IMO แต่มีหลายระดับ',
+        level: 'Olympiad',
+        region: 'International',
+        topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+        url: 'https://artofproblemsolving.com/wiki/index.php/IMO_Shortlist',
+        difficulty: 5,
+      },
+    ],
+  },
+]
+
+export const DIFFICULTY_LABEL: Record<number, string> = {
+  1: 'Intro',
+  2: 'Intermediate',
+  3: 'Advanced',
+  4: 'Olympiad',
+  5: 'Elite',
+}
