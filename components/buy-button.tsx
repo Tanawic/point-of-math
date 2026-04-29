@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import PurchaseModal from '@/components/purchase-modal'
 
 export default function BuyButton({
@@ -13,6 +14,9 @@ export default function BuyButton({
   label?: string
 }) {
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => { setMounted(true) }, [])
 
   return (
     <>
@@ -24,14 +28,15 @@ export default function BuyButton({
         {label}
       </button>
 
-      {open && (
+      {open && mounted && createPortal(
         <PurchaseModal
           courseId={courseId}
           courseTitle={courseTitle}
           priceDisplay={priceDisplay}
           includes={includes}
           onClose={() => setOpen(false)}
-        />
+        />,
+        document.body,
       )}
     </>
   )
