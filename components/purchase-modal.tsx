@@ -11,8 +11,8 @@ interface PurchaseModalProps {
 
 type Step = 'form' | 'success'
 
-const PROMPTPAY_NUMBER = '064-xxx-xxxx'   // ← ใส่เบอร์จริงที่นี่
-const ACCOUNT_NAME     = 'ดนัลวิชญ์ ...' // ← ใส่ชื่อบัญชีจริงที่นี่
+const PROMPTPAY_NUMBER = '064-xxx-xxxx'
+const ACCOUNT_NAME     = 'ดนัลวิชญ์ ...'
 
 export default function PurchaseModal({ courseId, courseTitle, priceDisplay, onClose }: PurchaseModalProps) {
   const [step, setStep]               = useState<Step>('form')
@@ -26,13 +26,11 @@ export default function PurchaseModal({ courseId, courseTitle, priceDisplay, onC
   const [error, setError]             = useState('')
   const fileRef                       = useRef<HTMLInputElement>(null)
 
-  // Lock scroll
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = '' }
   }, [])
 
-  // Escape key
   useEffect(() => {
     const fn = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', fn)
@@ -46,13 +44,6 @@ export default function PurchaseModal({ courseId, courseTitle, priceDisplay, onC
     r.onload = (e) => setSlipPreview(e.target?.result as string)
     r.readAsDataURL(file)
   }, [])
-
-  function onDrop(e: React.DragEvent) {
-    e.preventDefault()
-    setDragging(false)
-    const file = e.dataTransfer.files[0]
-    if (file) applyFile(file)
-  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -78,80 +69,97 @@ export default function PurchaseModal({ courseId, courseTitle, priceDisplay, onC
   }
 
   return (
+    /* Full-screen frosted overlay — page behind is visible and blurred */
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
-      style={{ backgroundColor: 'rgba(10,10,10,0.72)', backdropFilter: 'blur(2px)' }}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+      className="fixed inset-0 z-50 overflow-y-auto"
+      style={{
+        backgroundColor: 'rgba(248, 245, 240, 0.88)',
+        backdropFilter: 'blur(28px)',
+        WebkitBackdropFilter: 'blur(28px)',
+      }}
     >
-      <div
-        className="relative bg-white w-full sm:mx-4 flex flex-col"
-        style={{ maxWidth: 460, maxHeight: '94vh', boxShadow: '0 24px 64px rgba(0,0,0,0.28)' }}
+      {/* Close — top right, always visible */}
+      <button
+        onClick={onClose}
+        aria-label="ปิด"
+        className="fixed top-6 right-6 z-10 w-10 h-10 flex items-center justify-center text-muted hover:text-ink transition-colors"
       >
-        {/* ── HEADER ── dark strip, price + title */}
-        <div className="bg-ink px-7 py-5 flex items-start justify-between shrink-0">
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-white/40 mb-1">
-              สั่งซื้อคอร์ส
-            </p>
-            <h2 className="font-serif italic text-[19px] text-white leading-tight">
-              {courseTitle}
-            </h2>
-          </div>
-          <div className="text-right ml-4 shrink-0">
-            <p className="font-mono text-[11px] text-white/40 mb-0.5">ราคา</p>
-            <p className="font-mono text-[22px] font-bold text-white leading-none">{priceDisplay}</p>
-          </div>
-        </div>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M1 1l14 14M15 1L1 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </button>
 
-        {/* ── SCROLLABLE BODY */}
-        <div className="overflow-y-auto">
+      {/* Centered content container */}
+      <div className="min-h-full flex flex-col items-center justify-center py-16 px-6">
+        <div className="w-full" style={{ maxWidth: 520 }}>
+
+          {/* Brand mark */}
+          <p className="font-serif italic text-[16px] text-muted mb-10 text-center tracking-wide">
+            Point of Math
+          </p>
+
           {step === 'success' ? (
-            // ── SUCCESS ────────────────────────────────────────────────────────
-            <div className="px-7 py-14 flex flex-col items-center gap-5 text-center">
-              <div className="w-11 h-11 rounded-full bg-ink flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M4 10.5l4 4 8-8" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            // ── SUCCESS ──────────────────────────────────────────────────────
+            <div className="flex flex-col items-center gap-6 text-center">
+              <div
+                className="w-14 h-14 rounded-full bg-ink flex items-center justify-center"
+                style={{ boxShadow: '0 8px 32px rgba(10,10,10,0.18)' }}
+              >
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M4 11.5l4.5 4.5 9.5-9.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
+
               <div>
-                <p className="font-sans text-[16px] font-semibold text-ink mb-2">ส่งข้อมูลสำเร็จแล้ว</p>
-                <p className="font-sans text-[13px] text-muted leading-6">
+                <h2 className="font-serif italic text-[32px] text-ink mb-3 leading-tight">
+                  ส่งข้อมูลสำเร็จ
+                </h2>
+                <p className="font-sans text-[15px] text-muted leading-7">
                   เราได้รับสลิปของคุณแล้ว<br/>
                   ลิงก์วิดีโอจะส่งไปที่<br/>
-                  <span className="font-medium text-ink">{email}</span><br/>
+                  <span className="text-ink font-medium">{email}</span><br/>
                   ภายใน 24 ชั่วโมง
                 </p>
               </div>
+
               <button
                 onClick={onClose}
-                className="mt-3 font-mono text-[11px] uppercase tracking-widest border border-ink text-ink px-8 py-2.5 hover:bg-ink hover:text-white transition-colors"
+                className="mt-4 font-mono text-[11px] uppercase tracking-widest border border-ink text-ink px-10 py-3 hover:bg-ink hover:text-paper transition-colors"
               >
-                ปิด
+                กลับสู่หน้าหลัก
               </button>
             </div>
-          ) : (
-            // ── FORM ───────────────────────────────────────────────────────────
-            <form onSubmit={handleSubmit} className="flex flex-col">
 
-              {/* Payment instructions */}
-              <div className="px-7 py-5 border-b border-rule">
-                <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-3">
-                  ขั้นตอนที่ 1 — โอนเงิน
-                </p>
-                <div className="flex items-center justify-between gap-4">
+          ) : (
+            // ── FORM ─────────────────────────────────────────────────────────
+            <form onSubmit={handleSubmit} className="flex flex-col gap-0">
+
+              {/* Course + price */}
+              <div className="text-center mb-10">
+                <h2 className="font-serif italic text-[36px] md:text-[44px] text-ink leading-tight mb-3">
+                  {courseTitle}
+                </h2>
+                <div className="inline-flex items-center gap-3">
+                  <span className="font-mono text-[28px] font-bold text-ink">{priceDisplay}</span>
+                  <span className="font-mono text-[11px] uppercase tracking-widest text-muted border border-rule px-2 py-1">
+                    ครั้งเดียว
+                  </span>
+                </div>
+              </div>
+
+              {/* ── STEP 1: Payment ── */}
+              <StepBlock number="01" label="โอนเงินมาที่">
+                <div className="flex items-center justify-between gap-6">
                   <div>
-                    <p className="font-sans text-[13px] text-muted mb-0.5">PromptPay</p>
-                    <p className="font-mono text-[18px] font-bold text-ink tracking-wide">
+                    <p className="font-mono text-[11px] uppercase tracking-widest text-muted mb-1">PromptPay</p>
+                    <p className="font-mono text-[24px] font-bold text-ink tracking-wide leading-none">
                       {PROMPTPAY_NUMBER}
                     </p>
-                    <p className="font-sans text-[12px] text-muted mt-0.5">{ACCOUNT_NAME}</p>
+                    <p className="font-sans text-[13px] text-muted mt-1">{ACCOUNT_NAME}</p>
                   </div>
-                  {/* QR placeholder — swap with real <img> when you have the QR */}
-                  <div
-                    className="w-16 h-16 border border-rule flex items-center justify-center shrink-0"
-                    title="QR PromptPay"
-                  >
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="opacity-20">
+                  {/* QR placeholder — replace with <img src="/qr.png" .../> when ready */}
+                  <div className="w-20 h-20 border border-rule flex items-center justify-center shrink-0 bg-white">
+                    <svg width="40" height="40" viewBox="0 0 32 32" fill="none" className="opacity-20">
                       <rect x="2" y="2" width="12" height="12" rx="1" stroke="#0A0A0A" strokeWidth="2"/>
                       <rect x="18" y="2" width="12" height="12" rx="1" stroke="#0A0A0A" strokeWidth="2"/>
                       <rect x="2" y="18" width="12" height="12" rx="1" stroke="#0A0A0A" strokeWidth="2"/>
@@ -161,40 +169,35 @@ export default function PurchaseModal({ courseId, courseTitle, priceDisplay, onC
                       <rect x="20" y="18" width="3" height="3" fill="#0A0A0A"/>
                       <rect x="25" y="18" width="3" height="3" fill="#0A0A0A"/>
                       <rect x="20" y="23" width="3" height="3" fill="#0A0A0A"/>
-                      <rect x="25" y="25" width="5" height="5" fill="#0A0A0A"/>
+                      <rect x="26" y="26" width="4" height="4" fill="#0A0A0A"/>
                     </svg>
                   </div>
                 </div>
-              </div>
+              </StepBlock>
 
-              {/* Fields */}
-              <div className="px-7 py-5 border-b border-rule flex flex-col gap-5">
-                <p className="font-mono text-[10px] uppercase tracking-widest text-muted -mb-1">
-                  ขั้นตอนที่ 2 — กรอกข้อมูล
-                </p>
+              {/* ── STEP 2: Fields ── */}
+              <StepBlock number="02" label="กรอกข้อมูลของคุณ">
+                <div className="flex flex-col gap-6">
+                  <InputField
+                    id="pm-email" label="อีเมล" hint="— ลิงก์วิดีโอจะส่งมาที่นี่"
+                    type="email" value={email} placeholder="student@email.com"
+                    onChange={setEmail}
+                  />
+                  <InputField
+                    id="pm-name" label="ชื่อ-นามสกุล"
+                    type="text" value={name} placeholder="สมชาย ใจดี"
+                    onChange={setName}
+                  />
+                  <InputField
+                    id="pm-phone" label="เบอร์โทร" hint="— ไม่บังคับ"
+                    type="tel" value={phone} placeholder="08x-xxx-xxxx"
+                    onChange={setPhone}
+                  />
+                </div>
+              </StepBlock>
 
-                <InputField
-                  id="pm-email" label="อีเมล" hint="ลิงก์วิดีโอจะส่งมาที่นี่"
-                  type="email" value={email} placeholder="student@email.com"
-                  onChange={setEmail}
-                />
-                <InputField
-                  id="pm-name" label="ชื่อ-นามสกุล"
-                  type="text" value={name} placeholder="สมชาย ใจดี"
-                  onChange={setName}
-                />
-                <InputField
-                  id="pm-phone" label="เบอร์โทร" hint="ไม่บังคับ"
-                  type="tel" value={phone} placeholder="08x-xxx-xxxx"
-                  onChange={setPhone}
-                />
-              </div>
-
-              {/* Slip upload */}
-              <div className="px-7 py-5 border-b border-rule">
-                <p className="font-mono text-[10px] uppercase tracking-widest text-muted mb-3">
-                  ขั้นตอนที่ 3 — แนบสลิป
-                </p>
+              {/* ── STEP 3: Slip ── */}
+              <StepBlock number="03" label="แนบสลิปการโอนเงิน">
                 <input
                   ref={fileRef}
                   type="file"
@@ -208,12 +211,12 @@ export default function PurchaseModal({ courseId, courseTitle, priceDisplay, onC
                     <img
                       src={slipPreview}
                       alt="slip"
-                      className="w-full max-h-40 object-contain border border-rule"
+                      className="w-full max-h-52 object-contain border border-rule bg-white"
                     />
                     <button
                       type="button"
                       onClick={() => { setSlip(null); setSlipPreview(null) }}
-                      className="absolute top-2 right-2 font-mono text-[10px] uppercase tracking-widest bg-ink text-white px-2 py-1 hover:opacity-70 transition-opacity"
+                      className="absolute top-2 right-2 font-mono text-[10px] uppercase tracking-widest bg-ink text-paper px-3 py-1.5 hover:opacity-70 transition-opacity"
                     >
                       เปลี่ยน
                     </button>
@@ -222,56 +225,63 @@ export default function PurchaseModal({ courseId, courseTitle, priceDisplay, onC
                   <div
                     onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
                     onDragLeave={() => setDragging(false)}
-                    onDrop={onDrop}
+                    onDrop={(e) => { e.preventDefault(); setDragging(false); const f = e.dataTransfer.files[0]; if (f) applyFile(f) }}
                     onClick={() => fileRef.current?.click()}
-                    className={`cursor-pointer border-2 border-dashed py-8 flex flex-col items-center gap-2 transition-colors ${
+                    className={`cursor-pointer border-2 border-dashed py-10 flex flex-col items-center gap-2.5 transition-all ${
                       dragging ? 'border-ink bg-ink/5' : 'border-rule hover:border-ink'
                     }`}
                   >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-muted">
-                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-muted">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"
+                        stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <p className="font-sans text-[13px] text-muted">
-                      ลากวางหรือ <span className="text-ink underline">เลือกไฟล์</span>
+                    <p className="font-sans text-[14px] text-muted">
+                      ลากวางไฟล์หรือ <span className="text-ink underline underline-offset-2">เลือกรูปภาพ</span>
                     </p>
-                    <p className="font-mono text-[10px] text-muted/60 uppercase tracking-widest">
-                      JPG · PNG · max 10 MB
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-muted/50">
+                      JPG · PNG · สูงสุด 10 MB
                     </p>
                   </div>
                 )}
-              </div>
+              </StepBlock>
 
               {/* Submit */}
-              <div className="px-7 py-5 flex flex-col gap-3">
+              <div className="mt-8 flex flex-col gap-3">
                 {error && (
-                  <p className="font-sans text-[12px] text-red-600">{error}</p>
+                  <p className="font-sans text-[12px] text-red-600 text-center">{error}</p>
                 )}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full font-mono text-[11px] uppercase tracking-widest bg-ink text-white py-4 hover:opacity-70 transition-opacity disabled:opacity-30"
+                  className="w-full font-mono text-[12px] uppercase tracking-widest bg-ink text-paper py-5 hover:opacity-70 transition-opacity disabled:opacity-30"
+                  style={{ letterSpacing: '0.12em' }}
                 >
                   {loading ? 'กำลังส่ง...' : 'ส่งข้อมูลและสลิป →'}
                 </button>
-                <p className="font-sans text-[11px] text-muted text-center">
-                  ลิงก์วิดีโอจะส่งทางอีเมลภายใน 24 ชั่วโมงหลังยืนยันการชำระเงิน
+                <p className="font-sans text-[11px] text-muted text-center leading-relaxed">
+                  ลิงก์วิดีโอจะส่งทางอีเมลภายใน 24 ชั่วโมง หลังจากยืนยันการชำระเงิน
                 </p>
               </div>
+
             </form>
           )}
-        </div>
 
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          aria-label="ปิด"
-          className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-white/50 hover:text-white transition-colors"
-        >
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-            <path d="M1 1l11 11M12 1L1 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-        </button>
+        </div>
       </div>
+    </div>
+  )
+}
+
+/* ── Sub-components ─────────────────────────────────────────────────────────── */
+
+function StepBlock({ number, label, children }: { number: string; label: string; children: React.ReactNode }) {
+  return (
+    <div className="py-8 border-t border-rule">
+      <div className="flex items-baseline gap-3 mb-5">
+        <span className="font-mono text-[11px] text-muted/50">{number}</span>
+        <span className="font-mono text-[11px] uppercase tracking-widest text-muted">{label}</span>
+      </div>
+      {children}
     </div>
   )
 }
@@ -284,9 +294,9 @@ function InputField({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="flex gap-2 items-baseline mb-1">
+      <label htmlFor={id} className="flex gap-1.5 items-baseline mb-2">
         <span className="font-mono text-[10px] uppercase tracking-widest text-muted">{label}</span>
-        {hint && <span className="font-sans text-[10px] text-muted/60">{hint}</span>}
+        {hint && <span className="font-sans text-[11px] text-muted/50">{hint}</span>}
       </label>
       <input
         id={id}
@@ -294,7 +304,7 @@ function InputField({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full border-b border-rule bg-transparent py-2 font-sans text-[14px] text-ink placeholder:text-muted/30 focus:outline-none focus:border-ink transition-colors"
+        className="w-full border-b border-rule bg-transparent py-2.5 font-sans text-[15px] text-ink placeholder:text-muted/30 focus:outline-none focus:border-ink transition-colors"
       />
     </div>
   )
