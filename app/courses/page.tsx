@@ -101,8 +101,9 @@ export default function CoursesPage() {
                     <div className="font-mono text-[10px] uppercase tracking-widest text-muted mb-2">
                       ราคา
                     </div>
-                    <div className="font-mono text-[52px] font-bold leading-none text-ink">
-                      {course.priceDisplay}
+                    <div className="flex items-end gap-1.5 leading-none">
+                      <span className="font-mono text-[52px] font-bold text-ink">{course.priceDisplay}</span>
+                      <span className="font-sans font-medium text-[20px] text-ink/60 pb-1.5">฿</span>
                     </div>
                     <p className="mt-3 font-sans text-[13px] text-muted leading-relaxed">
                       จ่ายครั้งเดียว · เข้าถึงตลอดชีพ<br />

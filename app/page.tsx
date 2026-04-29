@@ -150,7 +150,7 @@ export default function HomePage() {
                     <span>·</span>
                     <span>{featuredCourse.duration}</span>
                     <span>·</span>
-                    <span className="text-paper font-bold">{featuredCourse.priceDisplay}</span>
+                    <span className="text-paper font-bold">{featuredCourse.priceDisplay} ฿</span>
                   </div>
                 </div>
                 <div className="flex flex-col gap-3 shrink-0">

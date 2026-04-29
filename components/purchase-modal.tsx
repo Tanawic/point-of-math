@@ -75,20 +75,25 @@ export default function PurchaseModal({
       style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', backgroundColor: 'rgba(10,10,10,0.45)' }}
     >
 
-      {/* ══ LEFT PANEL — ink ══ */}
+      {/* ══ LEFT — dark info panel ══ */}
       <div className="hidden md:flex flex-col bg-ink shrink-0" style={{ width: 380 }}>
-
         <div className="flex flex-col flex-1 px-10 py-10">
 
-          <p className="font-serif italic text-[13px] text-white/30 mb-10">Point of Math</p>
+          {/* Brand */}
+          <p className="font-sans text-[13px] text-white/30 mb-10 tracking-widest">
+            Point of Math
+          </p>
 
-          {/* Course + price */}
-          <h2 className="font-serif italic text-[30px] leading-tight text-white mb-4">
+          {/* Course title */}
+          <h2 className="font-sans font-medium text-[24px] leading-snug text-white mb-3">
             {courseTitle}
           </h2>
+
+          {/* Price */}
           <div className="flex items-end gap-2 mb-8">
-            <span className="font-mono text-[40px] font-black text-white leading-none">{priceDisplay}</span>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-white/30 pb-2">จ่ายครั้งเดียว</span>
+            <span className="font-mono font-bold text-[52px] text-white leading-none">{priceDisplay}</span>
+            <span className="font-sans font-medium text-[20px] text-white/70 pb-1.5">฿</span>
+            <span className="font-sans text-[12px] text-white/30 pb-2">จ่ายครั้งเดียว</span>
           </div>
 
           <div className="h-px bg-white/10 mb-6" />
@@ -97,31 +102,31 @@ export default function PurchaseModal({
           <div className="flex flex-col gap-3 mb-8">
             {includes.map((item) => (
               <div key={item} className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full bg-white/15 flex items-center justify-center shrink-0">
-                  <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                <div className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center shrink-0">
+                  <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
                     <path d="M2 5l2.5 2.5 3.5-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <span className="font-sans text-[13px] font-semibold text-white/80">{item}</span>
+                <span className="font-sans font-semibold text-[14px] text-white/80">{item}</span>
               </div>
             ))}
           </div>
 
           <div className="h-px bg-white/10 mb-6" />
 
-          {/* PromptPay */}
-          <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/40 mb-3">
+          {/* PromptPay — font-mono ok here (Latin digits) */}
+          <p className="font-sans font-bold text-[11px] uppercase tracking-widest text-white/40 mb-3">
             โอนเงินมาที่
           </p>
           <div className="flex items-center justify-between gap-3">
             <div>
-              <p className="font-mono text-[10px] text-white/30 mb-1">PromptPay</p>
+              <p className="font-sans text-[11px] text-white/30 mb-1">PromptPay</p>
               <p className="font-mono text-[22px] font-black text-white tracking-wide leading-none">
                 {PROMPTPAY_NUMBER}
               </p>
-              <p className="font-sans text-[12px] font-semibold text-white/40 mt-1">{ACCOUNT_NAME}</p>
+              <p className="font-sans font-semibold text-[12px] text-white/40 mt-1">{ACCOUNT_NAME}</p>
             </div>
-            {/* QR — replace inner content with <img src="/qr.png"/> when ready */}
+            {/* QR — replace SVG with <img src="/qr.png"/> when ready */}
             <div className="w-[68px] h-[68px] border border-white/20 bg-white/5 flex items-center justify-center shrink-0">
               <svg width="34" height="34" viewBox="0 0 32 32" fill="none" className="opacity-30">
                 <rect x="2" y="2" width="12" height="12" rx="1" stroke="white" strokeWidth="2"/>
@@ -139,23 +144,25 @@ export default function PurchaseModal({
           </div>
         </div>
 
-        {/* Guarantee — pinned to bottom */}
+        {/* Guarantee */}
         <div className="px-10 py-5 border-t border-white/10 flex items-center gap-3">
-          <svg width="14" height="14" viewBox="0 0 18 20" fill="none" className="shrink-0 text-white/25">
+          <svg width="13" height="13" viewBox="0 0 18 20" fill="none" className="shrink-0 text-white/25">
             <path d="M9 1l2 6h6l-5 3.5 2 6L9 13l-5 3.5 2-6L1 7h6L9 1z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
           </svg>
-          <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/30">
+          <p className="font-sans font-bold text-[11px] uppercase tracking-widest text-white/30">
             คืนเงิน 100% ภายใน 7 วัน
           </p>
         </div>
       </div>
 
-      {/* ══ RIGHT PANEL — form, strictly h-full no scroll ══ */}
+      {/* ══ RIGHT — form ══ */}
       <div className="flex-1 bg-paper flex flex-col" style={{ minWidth: 0 }}>
 
-        {/* Header row */}
+        {/* Header */}
         <div className="flex items-center justify-between px-10 pt-8 pb-6 shrink-0">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-ink">ชำระเงิน</p>
+          <p className="font-sans font-bold text-[13px] uppercase tracking-widest text-ink">
+            ชำระเงิน
+          </p>
           <button
             onClick={onClose}
             aria-label="ปิด"
@@ -175,28 +182,28 @@ export default function PurchaseModal({
               </svg>
             </div>
             <div>
-              <h3 className="font-serif italic text-[26px] text-ink mb-2">ส่งข้อมูลสำเร็จ</h3>
+              <h3 className="font-sans font-bold text-[26px] text-ink mb-2">ส่งข้อมูลสำเร็จ</h3>
               <p className="font-sans text-[14px] text-muted leading-7">
                 ลิงก์วิดีโอจะส่งไปที่<br/>
-                <strong className="text-ink text-[15px]">{email}</strong><br/>
+                <strong className="text-ink text-[15px] font-bold">{email}</strong><br/>
                 ภายใน 24 ชั่วโมง
               </p>
             </div>
             <button
               onClick={onClose}
-              className="font-mono text-[11px] font-bold uppercase tracking-widest border border-ink text-ink px-10 py-3 hover:bg-ink hover:text-paper transition-colors"
+              className="font-sans font-bold text-[12px] uppercase tracking-widest border border-ink text-ink px-10 py-3 hover:bg-ink hover:text-paper transition-colors"
             >
               ปิด
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex-1 flex flex-col px-10 pb-8 gap-0" style={{ minHeight: 0 }}>
+          <form onSubmit={handleSubmit} className="flex-1 flex flex-col px-10 pb-8" style={{ minHeight: 0 }}>
 
             {/* ── Email ── */}
             <div className="flex-1 flex flex-col justify-center border-b border-rule">
-              <label className="font-mono text-[11px] font-bold uppercase tracking-widest text-ink mb-1">
+              <label className="font-sans font-bold text-[12px] uppercase tracking-widest text-ink mb-1">
                 อีเมล
-                <span className="font-sans text-[11px] font-normal normal-case tracking-normal text-muted ml-2">
+                <span className="font-sans font-normal normal-case tracking-normal text-[12px] text-muted ml-2">
                   — ลิงก์วิดีโอจะส่งมาที่นี่
                 </span>
               </label>
@@ -204,28 +211,28 @@ export default function PurchaseModal({
                 type="email" value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="student@email.com"
-                className="w-full bg-transparent py-2 font-sans text-[16px] font-semibold text-ink placeholder:text-muted/25 focus:outline-none"
+                className="w-full bg-transparent py-2 font-sans font-semibold text-[16px] text-ink placeholder:text-muted/25 focus:outline-none"
               />
             </div>
 
             {/* ── Name ── */}
             <div className="flex-1 flex flex-col justify-center border-b border-rule">
-              <label className="font-mono text-[11px] font-bold uppercase tracking-widest text-ink mb-1">
+              <label className="font-sans font-bold text-[12px] uppercase tracking-widest text-ink mb-1">
                 ชื่อ-นามสกุล
               </label>
               <input
                 type="text" value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="สมชาย ใจดี"
-                className="w-full bg-transparent py-2 font-sans text-[16px] font-semibold text-ink placeholder:text-muted/25 focus:outline-none"
+                className="w-full bg-transparent py-2 font-sans font-semibold text-[16px] text-ink placeholder:text-muted/25 focus:outline-none"
               />
             </div>
 
             {/* ── Phone ── */}
             <div className="flex-1 flex flex-col justify-center border-b border-rule">
-              <label className="font-mono text-[11px] font-bold uppercase tracking-widest text-ink mb-1">
+              <label className="font-sans font-bold text-[12px] uppercase tracking-widest text-ink mb-1">
                 เบอร์โทร
-                <span className="font-sans text-[11px] font-normal normal-case tracking-normal text-muted ml-2">
+                <span className="font-sans font-normal normal-case tracking-normal text-[12px] text-muted ml-2">
                   — ไม่บังคับ
                 </span>
               </label>
@@ -233,13 +240,13 @@ export default function PurchaseModal({
                 type="tel" value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="08x-xxx-xxxx"
-                className="w-full bg-transparent py-2 font-sans text-[16px] font-semibold text-ink placeholder:text-muted/25 focus:outline-none"
+                className="w-full bg-transparent py-2 font-sans font-semibold text-[16px] text-ink placeholder:text-muted/25 focus:outline-none"
               />
             </div>
 
             {/* ── Slip ── */}
             <div className="flex-1 flex flex-col justify-center border-b border-rule">
-              <label className="font-mono text-[11px] font-bold uppercase tracking-widest text-ink mb-2">
+              <label className="font-sans font-bold text-[12px] uppercase tracking-widest text-ink mb-2">
                 สลิปการโอนเงิน
               </label>
               <input
@@ -250,11 +257,11 @@ export default function PurchaseModal({
                 <div className="flex items-center gap-3 py-1">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={slipPreview} alt="slip" className="h-9 w-9 object-cover border border-rule shrink-0"/>
-                  <span className="font-mono text-[11px] font-bold text-ink flex-1 truncate">แนบสลิปแล้ว ✓</span>
+                  <span className="font-sans font-bold text-[13px] text-ink flex-1 truncate">แนบสลิปแล้ว ✓</span>
                   <button
                     type="button"
                     onClick={() => { setSlip(null); setSlipPreview(null) }}
-                    className="font-mono text-[10px] uppercase tracking-widest text-muted hover:text-ink transition-colors"
+                    className="font-sans font-semibold text-[12px] text-muted hover:text-ink transition-colors"
                   >
                     เปลี่ยน
                   </button>
@@ -273,8 +280,8 @@ export default function PurchaseModal({
                     <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"
                       stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span className="font-sans text-[13px] text-muted">
-                    ลากวางหรือ <span className="font-semibold text-ink underline underline-offset-2">เลือกไฟล์</span>
+                  <span className="font-sans text-[14px] text-muted">
+                    ลากวางหรือ <span className="font-bold text-ink underline underline-offset-2">เลือกไฟล์สลิป</span>
                   </span>
                 </div>
               )}
@@ -282,18 +289,18 @@ export default function PurchaseModal({
 
             {/* ── Submit ── */}
             <div className="flex-1 flex flex-col justify-center gap-2">
-              {error && <p className="font-sans text-[11px] font-semibold text-red-600">{error}</p>}
+              {error && <p className="font-sans font-semibold text-[12px] text-red-600">{error}</p>}
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full font-mono text-[12px] font-black uppercase tracking-widest bg-ink text-paper py-4 hover:opacity-70 transition-opacity disabled:opacity-30"
+                className="w-full font-sans font-black text-[14px] uppercase tracking-widest bg-ink text-paper py-4 hover:opacity-70 transition-opacity disabled:opacity-30"
               >
                 {loading ? 'กำลังส่ง...' : 'ยืนยันการชำระเงิน →'}
               </button>
               <div className="flex items-center justify-center gap-3">
                 {['ปลอดภัย', 'คืนเงิน 7 วัน', 'ตลอดชีพ'].map((t, i, a) => (
                   <span key={t} className="flex items-center gap-3">
-                    <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-muted/40">{t}</span>
+                    <span className="font-sans font-semibold text-[10px] uppercase tracking-widest text-muted/40">{t}</span>
                     {i < a.length - 1 && <span className="text-muted/20">·</span>}
                   </span>
                 ))}
