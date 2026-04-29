@@ -32,26 +32,41 @@ export default function SheetCard({
       isDownloaded ? 'border-ink bg-white' : 'border-rule bg-white hover:border-ink'
     }`}>
 
-      {/* Card header */}
-      <div className="relative flex items-center justify-center h-32 overflow-hidden" style={{ backgroundColor: '#EEEBE6' }}>
-        <span
-          className="absolute bottom-0 right-2 font-mono text-[72px] leading-none text-ink select-none pointer-events-none"
-          style={{ opacity: 0.07 }}
-          aria-hidden
-        >
-          <TopicBgSymbol topic={topic} />
-        </span>
-        <div className="absolute top-3 left-3 w-7 h-7 opacity-30">
-          <TopicIcon topic={topic} className="w-full h-full" />
+      {/* Card header — mirrors the PDF cover design */}
+      <div className="relative overflow-hidden" style={{ backgroundColor: '#EEEBE6' }}>
+        {/* Dark top bar */}
+        <div className="flex items-center justify-between px-3 py-1.5 bg-ink">
+          <span className="font-serif italic text-[10px] text-paper/80 leading-none">
+            Point of Math
+          </span>
+          {isDownloaded && (
+            <span className="font-mono text-[8px] uppercase tracking-widest text-paper/60">
+              ✓ saved
+            </span>
+          )}
         </div>
-        {isDownloaded && (
-          <div className="absolute top-3 right-3 font-mono text-[9px] uppercase tracking-widest bg-ink text-paper px-1.5 py-0.5">
-            ✓ downloaded
-          </div>
-        )}
-        <span className="font-mono font-bold text-[46px] leading-none text-ink relative z-10">
-          {unitLabel}
-        </span>
+
+        {/* Cover body */}
+        <div className="relative px-4 pt-3 pb-4">
+          {/* Watermark symbol */}
+          <span
+            className="absolute bottom-0 right-2 font-mono leading-none text-ink select-none pointer-events-none text-[68px]"
+            style={{ opacity: 0.07 }}
+            aria-hidden
+          >
+            <TopicBgSymbol topic={topic} />
+          </span>
+
+          {/* Unit number */}
+          <span className="font-mono font-bold text-[42px] leading-none text-ink block">
+            {unitLabel}
+          </span>
+
+          {/* Topic in small-caps style */}
+          <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-muted block mt-1">
+            {topic}
+          </span>
+        </div>
       </div>
 
       {/* Card body */}
