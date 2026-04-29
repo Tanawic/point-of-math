@@ -3,6 +3,9 @@ import GeoGraphic from '@/components/geo-graphic'
 import StatsStrip from '@/components/stats-strip'
 import Roadmap from '@/components/roadmap'
 import FAQ from '@/components/faq'
+import ScrollReveal from '@/components/scroll-reveal'
+import BuyButton from '@/components/buy-button'
+import { COURSES } from '@/lib/courses'
 
 const features = [
   {
@@ -32,12 +35,13 @@ const features = [
 ]
 
 export default function HomePage() {
+  const featuredCourse = COURSES[0]
+
   return (
     <div>
       {/* ─── HERO ─────────────────────────────────────── */}
       <section className="border-b border-rule relative overflow-hidden min-h-[90vh] flex items-center">
 
-        {/* Dot-grid background */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -49,39 +53,25 @@ export default function HomePage() {
           </svg>
         </div>
 
-        {/* Geometric illustration — floats top-right on desktop */}
-        <div
-          className="absolute top-0 right-0 w-[48%] h-full hidden md:flex items-center justify-end pr-6 pointer-events-none"
-          aria-hidden
-        >
+        <div className="hero-graphic absolute top-0 right-0 w-[48%] h-full hidden md:flex items-center justify-end pr-6 pointer-events-none" aria-hidden>
           <GeoGraphic className="w-full max-w-[480px] opacity-30" />
         </div>
 
-        {/* Hero content */}
         <div className="relative mx-auto max-w-6xl px-6 md:px-10 py-28 md:py-40 w-full">
           <div className="max-w-[560px]">
-
-            {/* Eyebrow */}
-            <div className="font-mono text-[11px] uppercase tracking-widest text-muted mb-8">
+            <div className="hero-eyebrow font-mono text-[11px] uppercase tracking-widest text-muted mb-8">
               Mathematical Resources · Thailand
             </div>
-
-            {/* Display headline — serif italic */}
-            <h1 className="font-serif italic text-[64px] md:text-[96px] leading-[0.9] text-ink">
+            <h1 className="hero-title font-serif italic text-[64px] md:text-[96px] leading-[0.9] text-ink">
               Point<br />of Math
             </h1>
-
-            <div className="mt-10 h-px bg-ink" />
-
-            {/* Sub copy */}
-            <p className="mt-8 font-sans text-[16px] leading-relaxed text-muted">
+            <div className="hero-rule mt-10 h-px bg-ink" />
+            <p className="hero-sub mt-8 font-sans text-[16px] leading-relaxed text-muted">
               ข้อสอบแข่งขัน · แบบฝึกหัดโอลิมปิก · คลิปวิดีโอ
               <br />
               <span className="text-ink font-medium">ฟรีทั้งหมด ไม่ต้องสมัคร ไม่มีโฆษณา</span>
             </p>
-
-            {/* CTAs */}
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="hero-ctas mt-10 flex flex-wrap gap-3">
               <Link
                 href="/papers"
                 className="font-mono text-[12px] uppercase tracking-widest bg-ink text-paper px-8 py-3.5 hover:bg-muted transition-colors"
@@ -89,10 +79,10 @@ export default function HomePage() {
                 ดูข้อสอบ →
               </Link>
               <Link
-                href="/sheets"
+                href="/courses"
                 className="font-mono text-[12px] uppercase tracking-widest border border-ink text-ink px-8 py-3.5 hover:bg-ink hover:text-paper transition-colors"
               >
-                แบบฝึกหัด
+                คอร์สเรียน
               </Link>
             </div>
           </div>
@@ -106,42 +96,77 @@ export default function HomePage() {
       <section className="border-b border-rule">
         <div className="mx-auto max-w-6xl px-6 md:px-10 py-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-rule border border-rule">
-            {features.map((f) => (
-              <Link
-                key={f.href}
-                href={f.href}
-                className="group bg-paper p-8 md:p-10 flex flex-col gap-5 min-h-[280px] hover:bg-white transition-colors relative overflow-hidden"
-              >
-                {/* Background icon */}
-                <span
-                  className="absolute bottom-4 right-6 font-mono text-[72px] leading-none text-ink select-none pointer-events-none transition-transform duration-300 group-hover:scale-110"
-                  style={{ opacity: 0.05 }}
-                  aria-hidden
+            {features.map((f, i) => (
+              <ScrollReveal key={f.href} delay={i * 100}>
+                <Link
+                  href={f.href}
+                  className="group bg-paper p-8 md:p-10 flex flex-col gap-5 min-h-[280px] hover:bg-white transition-colors relative overflow-hidden"
                 >
-                  {f.icon}
-                </span>
-
-                <div className="font-mono text-[11px] uppercase tracking-widest text-muted">{f.num}</div>
-
-                <div>
-                  <h2 className="font-serif italic text-[32px] md:text-[36px] leading-tight text-ink">
-                    {f.title}
-                  </h2>
-                  <div className="font-sans text-[14px] text-muted mt-1">{f.thai}</div>
-                </div>
-
-                <p className="font-sans text-[13px] leading-relaxed text-muted mt-auto relative z-10">
-                  {f.desc}
-                </p>
-
-                <div className="font-mono text-[11px] uppercase tracking-widest text-ink group-hover:underline underline-offset-4">
-                  → View
-                </div>
-              </Link>
+                  <span
+                    className="absolute bottom-4 right-6 font-mono text-[72px] leading-none text-ink select-none pointer-events-none transition-transform duration-300 group-hover:scale-110"
+                    style={{ opacity: 0.05 }}
+                    aria-hidden
+                  >
+                    {f.icon}
+                  </span>
+                  <div className="font-mono text-[11px] uppercase tracking-widest text-muted">{f.num}</div>
+                  <div>
+                    <h2 className="font-serif italic text-[32px] md:text-[36px] leading-tight text-ink">
+                      {f.title}
+                    </h2>
+                    <div className="font-sans text-[14px] text-muted mt-1">{f.thai}</div>
+                  </div>
+                  <p className="font-sans text-[13px] leading-relaxed text-muted mt-auto relative z-10">
+                    {f.desc}
+                  </p>
+                  <div className="font-mono text-[11px] uppercase tracking-widest text-ink group-hover:underline underline-offset-4">
+                    → View
+                  </div>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
+
+      {/* ─── COURSE TEASER ────────────────────────────── */}
+      {featuredCourse && (
+        <section className="border-b border-rule bg-ink text-paper">
+          <div className="mx-auto max-w-6xl px-6 md:px-10 py-20">
+            <ScrollReveal>
+              <div className="grid md:grid-cols-[1fr_auto] gap-12 items-center">
+                <div>
+                  <div className="font-mono text-[11px] uppercase tracking-widest text-paper/40 mb-4">
+                    Featured Course
+                  </div>
+                  <h2 className="font-serif italic text-[36px] md:text-[52px] leading-tight text-paper">
+                    {featuredCourse.title}
+                  </h2>
+                  <p className="mt-5 font-sans text-[15px] text-paper/60 leading-relaxed max-w-lg">
+                    {featuredCourse.tagline}
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-6 font-mono text-[12px] text-paper/50">
+                    <span>{featuredCourse.level}</span>
+                    <span>·</span>
+                    <span>{featuredCourse.duration}</span>
+                    <span>·</span>
+                    <span className="text-paper font-bold">{featuredCourse.priceDisplay}</span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3 shrink-0">
+                  <BuyButton courseId={featuredCourse.id} label="ซื้อเลย →" />
+                  <Link
+                    href="/courses"
+                    className="font-mono text-[11px] uppercase tracking-widest text-paper/50 text-center hover:text-paper transition-colors"
+                  >
+                    ดูรายละเอียดคอร์ส
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
 
       {/* ─── ROADMAP ──────────────────────────────────── */}
       <Roadmap />

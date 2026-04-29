@@ -5,10 +5,11 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
 const links = [
-  { href: '/papers', label: 'Papers' },
-  { href: '/sheets', label: 'Sheets' },
-  { href: '/videos', label: 'Videos' },
-  { href: '/about',  label: 'About'  },
+  { href: '/papers',  label: 'Papers'  },
+  { href: '/sheets',  label: 'Sheets'  },
+  { href: '/videos',  label: 'Videos'  },
+  { href: '/courses', label: 'Courses' },
+  { href: '/about',   label: 'About'   },
 ]
 
 export default function Nav() {
@@ -46,10 +47,10 @@ export default function Nav() {
 
           {/* Desktop CTA */}
           <Link
-            href="/papers"
+            href="/courses"
             className="hidden md:block font-mono text-[11px] uppercase tracking-widest bg-ink text-paper px-4 py-2 hover:bg-muted transition-colors shrink-0"
           >
-            Download Free →
+            Buy Course →
           </Link>
 
           {/* Mobile hamburger */}
