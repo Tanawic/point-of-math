@@ -3,8 +3,13 @@ import SheetsClient from '@/components/sheets-client'
 import { sheets } from '@/lib/sheets'
 
 export const metadata: Metadata = {
-  title: 'Free Sheets · Point of Math',
-  description: 'แบบฝึกหัดคณิตศาสตร์ 15 หน่วย ตามหลักสูตรสอวน. ดาวน์โหลดฟรี',
+  title: 'Free Sheets',
+  description:
+    'แบบฝึกหัดคณิตศาสตร์ 15 หน่วย ตามหลักสูตรสอวน. — ทฤษฎีจำนวน พีชคณิต เรขาคณิต การนับ ตรรกศาสตร์ ดาวน์โหลดฟรี',
+  openGraph: {
+    title: 'Free Sheets · Point of Math',
+    description: 'แบบฝึกหัดโอลิมปิก 15 หน่วย ตามหลักสูตรสอวน. ดาวน์โหลดฟรี ไม่ต้องสมัคร',
+  },
 }
 
 export default function SheetsPage() {

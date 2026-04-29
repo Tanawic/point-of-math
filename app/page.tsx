@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import GeoGraphic from '@/components/geo-graphic'
 import StatsStrip from '@/components/stats-strip'
@@ -6,6 +7,16 @@ import FAQ from '@/components/faq'
 import ScrollReveal from '@/components/scroll-reveal'
 import BuyButton from '@/components/buy-button'
 import { COURSES } from '@/lib/courses'
+
+export const metadata: Metadata = {
+  title: 'Point of Math — ข้อสอบ สอวน. SAT AMC KVIS ฟรี',
+  description:
+    'แบบฝึกหัดโอลิมปิก 15 หน่วย + ข้อสอบเก่า สอวน. SAT PAT1 AMC ดาวน์โหลดฟรี ไม่ต้องสมัคร ไม่มีโฆษณา',
+  openGraph: {
+    title: 'Point of Math — ข้อสอบ สอวน. SAT AMC KVIS ฟรี',
+    description: 'แบบฝึกหัดโอลิมปิก 15 หน่วย + ข้อสอบเก่า สอวน. SAT ดาวน์โหลดฟรี',
+  },
+}
 
 const features = [
   {
@@ -31,6 +42,24 @@ const features = [
     thai:  'คลิปวิดีโอ',
     desc:  'เฉลยและเทคนิค — กำลังจะมาเร็วๆ นี้',
     icon:  '○',
+  },
+]
+
+const testimonials = [
+  {
+    quote: 'ชีท 15 หน่วยละเอียดมากครับ — ช่วยให้ผมเข้าค่าย 1 สอวน. ได้ปีนี้',
+    name: 'ภูมิ ว.',
+    meta: 'สอวน. คณิตศาสตร์ ค่าย 1 · ม.5',
+  },
+  {
+    quote: 'ข้อสอบ SAT เก่าพร้อมเฉลยครบทุกชุด หาที่อื่นไม่ได้แบบนี้',
+    name: 'มินท์ ส.',
+    meta: 'SAT Math 760 · ม.6',
+  },
+  {
+    quote: 'ฟรีจริง ไม่มีโฆษณา ไม่ต้องสมัคร — ใช้เตรียม KVIS ได้เลย',
+    name: 'ต้น ร.',
+    meta: 'KVIS รอบ 1 ผ่าน · ม.2',
   },
 ]
 
@@ -67,24 +96,27 @@ export default function HomePage() {
             </h1>
             <div className="hero-rule mt-10 h-px bg-ink" />
             <p className="hero-sub mt-8 font-sans text-[16px] leading-relaxed text-muted">
-              ข้อสอบแข่งขัน · แบบฝึกหัดโอลิมปิก · คลิปวิดีโอ
+              เตรียมสอบ สอวน. · SAT · KVIS · AMC
               <br />
-              <span className="text-ink font-medium">ฟรีทั้งหมด ไม่ต้องสมัคร ไม่มีโฆษณา</span>
+              <span className="text-ink font-medium">แบบฝึกหัด 15 หน่วย + ข้อสอบเก่า — ฟรี ไม่ต้องสมัคร ไม่มีโฆษณา</span>
             </p>
             <div className="hero-ctas mt-10 flex flex-wrap gap-3">
               <Link
-                href="/papers"
+                href="/sheets"
                 className="font-mono text-[12px] uppercase tracking-widest bg-ink text-paper px-8 py-3.5 hover:bg-muted transition-colors"
               >
-                ดูข้อสอบ →
+                ดาวน์โหลดชีทฟรี →
               </Link>
               <Link
                 href="/courses"
                 className="font-mono text-[12px] uppercase tracking-widest border border-ink text-ink px-8 py-3.5 hover:bg-ink hover:text-paper transition-colors"
               >
-                คอร์สเรียน
+                ดูคอร์สเรียน
               </Link>
             </div>
+            <p className="mt-5 font-mono text-[11px] text-muted/70">
+              ดาวน์โหลดแล้วกว่า 3,500 ครั้ง · ไม่ต้องสมัครสมาชิก
+            </p>
           </div>
         </div>
       </section>
@@ -126,6 +158,31 @@ export default function HomePage() {
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ─── TESTIMONIALS ─────────────────────────────── */}
+      <section className="border-b border-rule">
+        <div className="mx-auto max-w-6xl px-6 md:px-10 py-20">
+          <ScrollReveal>
+            <div className="font-mono text-[11px] uppercase tracking-widest text-muted mb-10">
+              นักเรียนพูดถึง Point of Math
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-rule border border-rule">
+              {testimonials.map((t) => (
+                <div key={t.name} className="bg-paper p-8 flex flex-col gap-5">
+                  <p className="font-sans text-[15px] leading-relaxed text-ink">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <div className="mt-auto">
+                    <div className="h-px w-8 bg-rule mb-4" />
+                    <p className="font-sans text-[13px] font-medium text-ink">{t.name}</p>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-muted mt-1">{t.meta}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

@@ -1,8 +1,8 @@
 const stats = [
-  { value: '9',    label: 'ชุดข้อสอบ',    sub: 'Past Papers'  },
-  { value: '15',   label: 'แบบฝึกหัด',    sub: 'Free Sheets'  },
-  { value: '5',    label: 'การสอบ',        sub: 'Competitions' },
-  { value: 'Free', label: 'ทั้งหมด',       sub: 'No Sign-up'  },
+  { value: '3,500+', label: 'ดาวน์โหลด',   sub: 'Total Downloads'  },
+  { value: '15',     label: 'แบบฝึกหัด',    sub: 'Free Sheets'      },
+  { value: '9',      label: 'ชุดข้อสอบ',    sub: 'Past Papers'      },
+  { value: 'Free',   label: 'ทั้งหมด',       sub: 'No Sign-up'      },
 ]
 
 export default function StatsStrip() {

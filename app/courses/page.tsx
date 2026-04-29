@@ -4,8 +4,13 @@ import BuyButton from '@/components/buy-button'
 import ScrollReveal from '@/components/scroll-reveal'
 
 export const metadata: Metadata = {
-  title: 'Courses · Point of Math',
-  description: 'คอร์สคณิตศาสตร์โอลิมปิก เตรียมสอบสอวน. PAT1 และ AMC',
+  title: 'Courses',
+  description:
+    'คอร์สคณิตศาสตร์โอลิมปิก สอวน. SAT Math KVIS — จ่ายครั้งเดียว เข้าถึงตลอดชีพ รับรองเรียนผ่านหรือคืนเงิน',
+  openGraph: {
+    title: 'Courses · Point of Math',
+    description: 'คอร์ส สอวน. SAT Math Olympiad KVIS — จ่ายครั้งเดียว เข้าถึงตลอดชีพ',
+  },
 }
 
 const CHECKMARK = (
@@ -14,6 +19,9 @@ const CHECKMARK = (
     <path d="M4.5 8.5l2.5 2.5 4.5-5" stroke="#F8F5F0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
+
+const TOTAL_PRICE = COURSES.reduce((sum, c) => sum + c.price, 0)
+const BUNDLE_PRICE = 1590
 
 export default function CoursesPage() {
   return (
@@ -37,6 +45,38 @@ export default function CoursesPage() {
             คอร์สเชิงลึกสำหรับนักเรียนที่ต้องการก้าวข้ามระดับ
             จากแบบฝึกหัดธรรมดาสู่โอลิมปิกและสอวน.
           </p>
+        </div>
+      </section>
+
+      {/* Bundle banner */}
+      <section className="border-b border-rule bg-ink text-paper">
+        <div className="mx-auto max-w-6xl px-6 md:px-10 py-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-widest text-paper/40 mb-2">
+                All Access Bundle · ประหยัดสุด
+              </div>
+              <p className="font-sans text-[15px] text-paper/80 leading-relaxed">
+                ครบทุก 4 คอร์ส — สอวน. · SAT · Olympiad · KVIS
+              </p>
+            </div>
+            <div className="flex items-center gap-6 shrink-0">
+              <div className="text-right">
+                <div className="font-mono text-[11px] text-paper/40 line-through">{TOTAL_PRICE} ฿</div>
+                <div className="font-mono text-[36px] font-bold text-paper leading-none">{BUNDLE_PRICE} <span className="text-[20px] font-normal text-paper/60">฿</span></div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-paper/40 mt-0.5">
+                  ประหยัด {TOTAL_PRICE - BUNDLE_PRICE} ฿ ({Math.round((1 - BUNDLE_PRICE / TOTAL_PRICE) * 100)}% off)
+                </div>
+              </div>
+              <button
+                disabled
+                className="font-mono text-[11px] uppercase tracking-widest border border-paper/30 text-paper/40 px-6 py-3 cursor-not-allowed"
+                title="Bundle checkout — coming soon"
+              >
+                เร็วๆ นี้
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 

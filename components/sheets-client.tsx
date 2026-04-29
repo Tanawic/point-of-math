@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import SheetCard from './sheet-card'
 import { TOPICS } from '@/lib/sheets'
 import type { Sheet, Topic } from '@/lib/sheets'
@@ -16,8 +16,36 @@ const topicLabel: Record<Filter, string> = {
   'Logic':          'Logic',
 }
 
+const STORAGE_KEY = 'pom_downloaded'
+const TOTAL = 15
+
+function useDownloadProgress() {
+  const [downloaded, setDownloaded] = useState<string[]>([])
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+      setDownloaded(Array.isArray(saved) ? saved : [])
+    } catch {
+      setDownloaded([])
+    }
+  }, [])
+
+  const track = (slug: string) => {
+    setDownloaded((prev) => {
+      if (prev.includes(slug)) return prev
+      const next = [...prev, slug]
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)) } catch {}
+      return next
+    })
+  }
+
+  return { downloaded, track }
+}
+
 export default function SheetsClient({ sheets }: { sheets: Sheet[] }) {
   const [active, setActive] = useState<Filter>('All')
+  const { downloaded, track } = useDownloadProgress()
 
   const filtered = useMemo(
     () => (active === 'All' ? sheets : sheets.filter((s) => s.topic === active)),
@@ -27,8 +55,45 @@ export default function SheetsClient({ sheets }: { sheets: Sheet[] }) {
   const countFor = (t: Filter) =>
     t === 'All' ? sheets.length : sheets.filter((s) => s.topic === t).length
 
+  const pct = Math.round((downloaded.length / TOTAL) * 100)
+  const showCTA = downloaded.length >= 10 && downloaded.length < TOTAL
+
   return (
     <div>
+      {/* Download progress bar */}
+      {downloaded.length > 0 && (
+        <div className="mb-10 border border-rule p-5">
+          <div className="flex items-center justify-between mb-3">
+            <span className="font-mono text-[11px] uppercase tracking-widest text-ink">
+              คุณดาวน์โหลดแล้ว {downloaded.length}/{TOTAL} ชีท
+            </span>
+            <span className="font-mono text-[11px] text-muted">{pct}%</span>
+          </div>
+          <div className="h-1.5 bg-rule overflow-hidden">
+            <div
+              className="h-full bg-ink transition-all duration-500"
+              style={{ width: `${pct}%` }}
+            />
+          </div>
+          {showCTA && (
+            <p className="mt-3 font-sans text-[13px] text-muted">
+              เก่งมาก! ลองเพิ่มระดับด้วย{' '}
+              <a href="/courses" className="text-ink underline underline-offset-2 hover:opacity-70">
+                คอร์สเชิงลึก →
+              </a>
+            </p>
+          )}
+          {downloaded.length === TOTAL && (
+            <p className="mt-3 font-sans text-[13px] text-ink font-medium">
+              ครบทุกหน่วยแล้ว! 🎯 พร้อมลุยคอร์สโอลิมปิก —{' '}
+              <a href="/courses" className="underline underline-offset-2 hover:opacity-70">
+                ดูคอร์ส →
+              </a>
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Topic filter pills */}
       <div className="flex flex-wrap gap-2 mb-10 pb-8 border-b border-rule">
         {TOPICS.map((t) => (
@@ -55,11 +120,14 @@ export default function SheetsClient({ sheets }: { sheets: Sheet[] }) {
           <SheetCard
             key={s.slug}
             unit={s.unit}
+            slug={s.slug}
             title={s.title}
             level={s.level}
             topic={s.topic}
             difficulty={s.difficulty}
             downloadUrl={s.downloadUrl}
+            isDownloaded={downloaded.includes(s.slug)}
+            onDownload={track}
           />
         ))}
       </div>

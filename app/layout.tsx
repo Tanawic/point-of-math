@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Anuphan, DM_Serif_Display, Space_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 import Nav from '@/components/nav'
 import Footer from '@/components/footer'
@@ -28,8 +29,33 @@ const mono = Space_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Point of Math',
-  description: 'ข้อสอบแข่งขัน · แบบฝึกหัดโอลิมปิก · คณิตศาสตร์ไทย ฟรีทั้งหมด',
+  metadataBase: new URL('https://point-of-math-st39.vercel.app'),
+  title: {
+    default: 'Point of Math — ข้อสอบ สอวน. SAT AMC KVIS ฟรี',
+    template: '%s · Point of Math',
+  },
+  description:
+    'ข้อสอบแข่งขันคณิตศาสตร์ · แบบฝึกหัดโอลิมปิก 15 หน่วย · เฉลย SAT สอวน. PAT1 AMC พสวท. ดาวน์โหลดฟรี ไม่ต้องสมัคร',
+  keywords: [
+    'ข้อสอบสอวน', 'เฉลยสอวน', 'ข้อสอบ SAT Math', 'เฉลย SAT', 'KVIS รอบ 1',
+    'คณิตศาสตร์โอลิมปิก', 'AMC 10', 'AMC 12', 'PAT1', 'แบบฝึกหัดคณิต',
+    'point of math', 'math olympiad thailand',
+  ],
+  openGraph: {
+    type: 'website',
+    locale: 'th_TH',
+    url: 'https://point-of-math-st39.vercel.app',
+    siteName: 'Point of Math',
+    title: 'Point of Math — ข้อสอบ สอวน. SAT AMC KVIS ฟรี',
+    description:
+      'ข้อสอบแข่งขันคณิตศาสตร์ · แบบฝึกหัดโอลิมปิก 15 หน่วย · ฟรีทั้งหมด ไม่ต้องสมัคร',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Point of Math — ข้อสอบ สอวน. SAT AMC KVIS ฟรี',
+    description: 'ข้อสอบแข่งขันคณิตศาสตร์ · แบบฝึกหัดโอลิมปิก 15 หน่วย · ฟรีทั้งหมด',
+  },
+  robots: { index: true, follow: true },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -40,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">{children}</main>
         <Footer />
         <FloatingCTA />
+        <Analytics />
       </body>
     </html>
   )

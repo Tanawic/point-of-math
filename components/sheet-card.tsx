@@ -1,13 +1,18 @@
+'use client'
+
 import type { Topic, Difficulty } from '@/lib/sheets'
 import { TopicIcon, TopicBgSymbol } from '@/components/topic-icon'
 
 interface SheetCardProps {
   unit: number
+  slug: string
   title: string
   level: string
   topic: Topic
   difficulty: Difficulty
   downloadUrl: string
+  isDownloaded?: boolean
+  onDownload?: (slug: string) => void
 }
 
 const difficultyStyle: Record<Difficulty, string> = {
@@ -16,11 +21,15 @@ const difficultyStyle: Record<Difficulty, string> = {
   Olympiad: 'bg-ink text-paper',
 }
 
-export default function SheetCard({ unit, title, level, topic, difficulty, downloadUrl }: SheetCardProps) {
+export default function SheetCard({
+  unit, slug, title, level, topic, difficulty, downloadUrl, isDownloaded, onDownload,
+}: SheetCardProps) {
   const unitLabel = unit.toString().padStart(2, '0')
 
   return (
-    <div className="border border-rule bg-white flex flex-col hover:border-ink hover:-translate-y-0.5 transition-all duration-200">
+    <div className={`border flex flex-col hover:-translate-y-0.5 transition-all duration-200 ${
+      isDownloaded ? 'border-ink bg-white' : 'border-rule bg-white hover:border-ink'
+    }`}>
 
       {/* Card header */}
       <div className="relative flex items-center justify-center h-32 overflow-hidden" style={{ backgroundColor: '#EEEBE6' }}>
@@ -34,6 +43,11 @@ export default function SheetCard({ unit, title, level, topic, difficulty, downl
         <div className="absolute top-3 left-3 w-7 h-7 opacity-30">
           <TopicIcon topic={topic} className="w-full h-full" />
         </div>
+        {isDownloaded && (
+          <div className="absolute top-3 right-3 font-mono text-[9px] uppercase tracking-widest bg-ink text-paper px-1.5 py-0.5">
+            ✓ downloaded
+          </div>
+        )}
         <span className="font-mono font-bold text-[46px] leading-none text-ink relative z-10">
           {unitLabel}
         </span>
@@ -61,9 +75,14 @@ export default function SheetCard({ unit, title, level, topic, difficulty, downl
           href={downloadUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-auto font-mono text-[11px] uppercase tracking-widest border border-ink text-ink px-3 py-2.5 text-center hover:bg-ink hover:text-paper transition-colors"
+          onClick={() => onDownload?.(slug)}
+          className={`mt-auto font-mono text-[11px] uppercase tracking-widest px-3 py-2.5 text-center transition-colors ${
+            isDownloaded
+              ? 'bg-ink text-paper hover:bg-muted'
+              : 'border border-ink text-ink hover:bg-ink hover:text-paper'
+          }`}
         >
-          Download PDF
+          {isDownloaded ? '↓ Download Again' : 'Download PDF'}
         </a>
       </div>
     </div>

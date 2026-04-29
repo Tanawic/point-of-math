@@ -3,8 +3,13 @@ import PapersClient from '@/components/papers-client'
 import { paperGroups } from '@/lib/papers'
 
 export const metadata: Metadata = {
-  title: 'Past Papers · Point of Math',
-  description: 'ข้อสอบเก่า SAT, สอวน., PAT1, AMC, พสวท. ดาวน์โหลดฟรี',
+  title: 'Past Papers',
+  description:
+    'ข้อสอบเก่า SAT Math, สอวน. คณิตศาสตร์, PAT1, AMC 10/12, พสวท. พร้อมเฉลย ดาวน์โหลดฟรี ไม่ต้องสมัคร',
+  openGraph: {
+    title: 'Past Papers · Point of Math',
+    description: 'ข้อสอบเก่า SAT สอวน. PAT1 AMC พสวท. พร้อมเฉลย ดาวน์โหลดฟรี',
+  },
 }
 
 export default function PapersPage() {
