@@ -111,7 +111,12 @@ export default function CoursesPage() {
                   </div>
 
                   <div className="flex flex-col gap-3">
-                    <BuyButton courseId={course.id} label="ซื้อเลย →" />
+                    <BuyButton
+                      courseId={course.id}
+                      courseTitle={course.title}
+                      priceDisplay={course.priceDisplay}
+                      label="ซื้อเลย →"
+                    />
                     <p className="font-mono text-[10px] text-muted text-center">
                       ได้รับลิงก์ทันทีทางอีเมล
                     </p>

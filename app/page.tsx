@@ -154,7 +154,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="flex flex-col gap-3 shrink-0">
-                  <BuyButton courseId={featuredCourse.id} label="ซื้อเลย →" />
+                  <BuyButton courseId={featuredCourse.id} courseTitle={featuredCourse.title} priceDisplay={featuredCourse.priceDisplay} label="ซื้อเลย →" />
                   <Link
                     href="/courses"
                     className="font-mono text-[11px] uppercase tracking-widest text-paper/50 text-center hover:text-paper transition-colors"

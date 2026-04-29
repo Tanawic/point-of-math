@@ -49,8 +49,8 @@ export default function SheetsClient({ sheets }: { sheets: Sheet[] }) {
         ))}
       </div>
 
-      {/* Sheet list */}
-      <div>
+      {/* Sheet grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
         {filtered.map((s) => (
           <SheetCard
             key={s.slug}
@@ -65,7 +65,9 @@ export default function SheetsClient({ sheets }: { sheets: Sheet[] }) {
       </div>
 
       {filtered.length === 0 && (
-        <p className="font-mono text-[13px] text-muted py-12">ไม่พบแบบฝึกหัดในหัวข้อนี้</p>
+        <div className="border border-dashed border-rule px-6 py-16 text-center">
+          <p className="font-sans text-[13px] text-muted">ไม่พบแบบฝึกหัดในหัวข้อนี้</p>
+        </div>
       )}
     </div>
   )
