@@ -25,6 +25,7 @@ export default function SheetCard({
   unit, slug, title, level, topic, difficulty, downloadUrl, isDownloaded, onDownload,
 }: SheetCardProps) {
   const unitLabel = unit.toString().padStart(2, '0')
+  const apiUrl = `/api/download/${slug}`
 
   return (
     <div className={`border flex flex-col hover:-translate-y-0.5 transition-all duration-200 ${
@@ -72,7 +73,7 @@ export default function SheetCard({
         </h3>
 
         <a
-          href={downloadUrl}
+          href={apiUrl}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => onDownload?.(slug)}
