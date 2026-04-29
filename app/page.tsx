@@ -6,6 +6,7 @@ import Roadmap from '@/components/roadmap'
 import FAQ from '@/components/faq'
 import ScrollReveal from '@/components/scroll-reveal'
 import BuyButton from '@/components/buy-button'
+import CountdownWidget from '@/components/countdown'
 import { COURSES } from '@/lib/courses'
 
 export const metadata: Metadata = {
@@ -224,6 +225,9 @@ export default function HomePage() {
           </div>
         </section>
       )}
+
+      {/* ─── COUNTDOWN ────────────────────────────────── */}
+      <CountdownWidget />
 
       {/* ─── ROADMAP ──────────────────────────────────── */}
       <Roadmap />
