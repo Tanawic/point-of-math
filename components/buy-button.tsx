@@ -3,10 +3,13 @@
 import { useState } from 'react'
 import PurchaseModal from '@/components/purchase-modal'
 
-export default function BuyButton({ courseId, courseTitle, priceDisplay, label = 'ซื้อเลย →' }: {
+export default function BuyButton({
+  courseId, courseTitle, priceDisplay, includes, label = 'ซื้อเลย →',
+}: {
   courseId: string
   courseTitle: string
   priceDisplay: string
+  includes: string[]
   label?: string
 }) {
   const [open, setOpen] = useState(false)
@@ -26,6 +29,7 @@ export default function BuyButton({ courseId, courseTitle, priceDisplay, label =
           courseId={courseId}
           courseTitle={courseTitle}
           priceDisplay={priceDisplay}
+          includes={includes}
           onClose={() => setOpen(false)}
         />
       )}

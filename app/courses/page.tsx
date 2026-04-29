@@ -115,6 +115,7 @@ export default function CoursesPage() {
                       courseId={course.id}
                       courseTitle={course.title}
                       priceDisplay={course.priceDisplay}
+                      includes={course.includes}
                       label="ซื้อเลย →"
                     />
                     <p className="font-mono text-[10px] text-muted text-center">
