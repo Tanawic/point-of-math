@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState, useMemo } from 'react'
 import PaperCard from './paper-card'
 import type { PaperGroup, CompetitionKey } from '@/lib/papers'
@@ -138,6 +139,22 @@ export default function PapersClient({ groups }: { groups: PaperGroup[] }) {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Point to Problems page for more */}
+      <div className="mt-16 border-t border-rule pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <p className="font-sans text-[14px] text-ink font-medium">หาข้อสอบ PAT1 · AMC · พสวท. · สอวน. อื่นๆ?</p>
+          <p className="font-sans text-[13px] text-muted mt-1">
+            รวมลิงก์แหล่ง past paper ทางการทุกรายการแข่งขัน — ไม่ต้องหาเอง
+          </p>
+        </div>
+        <Link
+          href="/problems"
+          className="shrink-0 font-mono text-[11px] uppercase tracking-widest border border-ink text-ink px-6 py-3 hover:bg-ink hover:text-paper transition-colors"
+        >
+          ดูทุกการแข่งขัน →
+        </Link>
       </div>
     </div>
   )

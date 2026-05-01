@@ -64,24 +64,6 @@ export const paperGroups: PaperGroup[] = [
       },
     ],
   },
-  {
-    competition: 'PAT1 (ความถนัดคณิตศาสตร์)',
-    competitionKey: 'PAT1',
-    papers: [],
-    comingSoon: true,
-  },
-  {
-    competition: 'AMC 8 / AMC 10 / AMC 12',
-    competitionKey: 'AMC',
-    papers: [],
-    comingSoon: true,
-  },
-  {
-    competition: 'พสวท.',
-    competitionKey: 'PCSN',
-    papers: [],
-    comingSoon: true,
-  },
 ]
 
 export const allPapers: Paper[] = paperGroups.flatMap((g) => g.papers)
