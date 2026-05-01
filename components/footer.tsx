@@ -43,10 +43,10 @@ export default function Footer() {
           {/* Contact + copyright */}
           <div className="flex flex-col gap-1">
             <a
-              href="mailto:05351@pccm.ac.th"
+              href="mailto:pointofmathcontacts@gmail.com"
               className="font-mono text-[11px] text-muted hover:text-ink transition-colors"
             >
-              05351@pccm.ac.th
+              pointofmathcontacts@gmail.com
             </a>
             <span className="font-mono text-[10px] text-muted/60">© 2026 Point of Math</span>
           </div>

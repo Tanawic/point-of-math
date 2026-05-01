@@ -59,7 +59,7 @@ export async function sendCourseAccessEmail(params: {
 
           <p style="margin:0 0 32px;font-size:14px;color:#7A7672;line-height:1.7;">
             หากมีปัญหาหรือคำถาม ติดต่อได้ที่
-            <a href="mailto:05351@pccm.ac.th" style="color:#0A0A0A;">05351@pccm.ac.th</a>
+            <a href="mailto:pointofmathcontacts@gmail.com" style="color:#0A0A0A;">pointofmathcontacts@gmail.com</a>
           </p>
 
           <hr style="border:none;border-top:1px solid #E3DED8;margin:0 0 32px;">

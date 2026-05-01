@@ -32,6 +32,9 @@ export default function PapersClient({ groups }: { groups: PaperGroup[] }) {
     ...groups.filter((g) => !g.comingSoon).map((g) => g.competitionKey),
   ]
 
+  const totalPapers   = groups.reduce((n, g) => n + g.papers.length, 0)
+  const totalAnswers  = groups.reduce((n, g) => n + g.papers.filter((p) => p.answersUrl).length, 0)
+
   const filtered = useMemo(() => {
     return groups
       .filter((g) => competition === 'All' || g.competitionKey === competition)
@@ -45,6 +48,13 @@ export default function PapersClient({ groups }: { groups: PaperGroup[] }) {
 
   return (
     <div>
+      {/* Quick stats */}
+      <div className="flex flex-wrap gap-x-8 gap-y-1 mb-8 font-mono text-[11px] uppercase tracking-widest text-muted">
+        <span>{totalPapers} ชุดข้อสอบ</span>
+        <span>{totalAnswers} มีเฉลย</span>
+        <span>ดาวน์โหลดฟรี · ไม่ต้องสมัคร</span>
+      </div>
+
       {/* Search + filter */}
       <div className="flex flex-col sm:flex-row gap-3 mb-14 pb-8 border-b border-rule">
         <div className="relative flex-1">

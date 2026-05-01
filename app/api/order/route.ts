@@ -116,7 +116,7 @@ async function sendOrderConfirmEmail(params: {
           </p>
           <p style="font-size:14px;color:#7A7672;margin-top:24px;">
             หากมีคำถาม ติดต่อได้ที่
-            <a href="mailto:05351@pccm.ac.th" style="color:#0A0A0A;">05351@pccm.ac.th</a>
+            <a href="mailto:pointofmathcontacts@gmail.com" style="color:#0A0A0A;">pointofmathcontacts@gmail.com</a>
           </p>
         </td></tr>
         <tr><td style="padding:24px 40px;background:#F8F5F0;border-top:1px solid #E3DED8;">

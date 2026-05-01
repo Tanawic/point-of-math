@@ -63,7 +63,7 @@ export default function PurchaseModal({
       if (!res.ok) throw new Error()
       setDone(true)
     } catch {
-      setError('เกิดข้อผิดพลาด กรุณาลองใหม่หรือติดต่อ 05351@pccm.ac.th')
+      setError('เกิดข้อผิดพลาด กรุณาลองใหม่หรือติดต่อ pointofmathcontacts@gmail.com')
     } finally {
       setLoading(false)
     }

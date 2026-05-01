@@ -39,7 +39,7 @@ export default function FAQ() {
             </h2>
             <p className="mt-4 font-sans text-[14px] text-muted leading-relaxed">
               ไม่เจอคำตอบ?{' '}
-              <a href="mailto:05351@pccm.ac.th" className="text-ink underline underline-offset-4">
+              <a href="mailto:pointofmathcontacts@gmail.com" className="text-ink underline underline-offset-4">
                 อีเมลมาได้เลย
               </a>
             </p>

@@ -36,8 +36,8 @@ export default function SuccessPage() {
           <p>
             หากไม่ได้รับอีเมล กรุณาตรวจสอบโฟลเดอร์สแปม
             หรือติดต่อ{' '}
-            <a href="mailto:05351@pccm.ac.th" className="text-ink underline underline-offset-4">
-              05351@pccm.ac.th
+            <a href="mailto:pointofmathcontacts@gmail.com" className="text-ink underline underline-offset-4">
+              pointofmathcontacts@gmail.com
             </a>
           </p>
         </div>

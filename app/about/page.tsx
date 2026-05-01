@@ -61,10 +61,10 @@ export default function AboutPage() {
               <div className="border-t border-rule pt-12">
                 <div className="font-mono text-[11px] uppercase tracking-widest text-muted mb-5">Contact</div>
                 <a
-                  href="mailto:05351@pccm.ac.th"
+                  href="mailto:pointofmathcontacts@gmail.com"
                   className="font-sans text-[16px] text-ink hover:text-muted transition-colors underline underline-offset-4 decoration-rule hover:decoration-muted"
                 >
-                  05351@pccm.ac.th
+                  pointofmathcontacts@gmail.com
                 </a>
               </div>
             </div>

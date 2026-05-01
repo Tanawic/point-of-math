@@ -17,7 +17,7 @@ const difficultyStyle: Record<Difficulty, string> = {
 
 export default function PaperCard({ title, competition, year, difficulty, downloadUrl, answersUrl }: PaperCardProps) {
   return (
-    <div className="border-l-2 border-ink bg-white pl-5 pr-4 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 hover:bg-paper transition-colors">
+    <div className="border-l-2 border-ink bg-white pl-5 pr-4 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 hover:bg-paper transition-colors group">
 
       {/* Left: info */}
       <div className="flex-1 min-w-0">
@@ -34,6 +34,11 @@ export default function PaperCard({ title, competition, year, difficulty, downlo
           <span className={`font-mono text-[10px] uppercase tracking-widest px-2 py-[2px] ${difficultyStyle[difficulty]}`}>
             {difficulty}
           </span>
+          {answersUrl && (
+            <span className="font-mono text-[10px] uppercase tracking-widest text-muted px-2 py-[2px] border border-dashed border-rule">
+              ✓ เฉลย
+            </span>
+          )}
         </div>
       </div>
 
@@ -41,20 +46,22 @@ export default function PaperCard({ title, competition, year, difficulty, downlo
       <div className="flex items-center gap-2 shrink-0">
         <a
           href={downloadUrl}
+          download
           target="_blank"
           rel="noopener noreferrer"
-          className="font-mono text-[11px] uppercase tracking-widest border border-ink text-ink px-5 py-2 hover:bg-ink hover:text-paper transition-colors"
+          className="font-mono text-[11px] uppercase tracking-widest border border-ink text-ink px-5 py-2 hover:bg-ink hover:text-paper transition-colors flex items-center gap-1.5"
         >
-          Download
+          <span className="text-[13px] leading-none">↓</span> PDF
         </a>
         {answersUrl && (
           <a
             href={answersUrl}
+            download
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-[11px] uppercase tracking-widest border border-rule text-muted px-5 py-2 hover:border-ink hover:text-ink transition-colors"
+            className="font-mono text-[11px] uppercase tracking-widest border border-rule text-muted px-5 py-2 hover:border-ink hover:text-ink transition-colors flex items-center gap-1.5"
           >
-            Answers
+            <span className="text-[13px] leading-none">↓</span> เฉลย
           </a>
         )}
       </div>

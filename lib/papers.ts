@@ -20,11 +20,23 @@ export interface PaperGroup {
   comingSoon?: boolean
 }
 
+const satTestMeta: Record<number, { year: string }> = {
+  4:  { year: '2015' },
+  5:  { year: '2016' },
+  6:  { year: '2016' },
+  7:  { year: '2017' },
+  8:  { year: '2018' },
+  9:  { year: '2019' },
+  10: { year: '2023' },
+  11: { year: '2023' },
+}
+
 const satTests: Paper[] = [4, 5, 6, 7, 8, 9, 10, 11].map((n) => ({
   id: `sat-test-${n}`,
   title: `SAT Test ${n} — Math`,
   competition: 'SAT',
   competitionKey: 'SAT' as CompetitionKey,
+  year: satTestMeta[n].year,
   difficulty: 'Medium' as Difficulty,
   downloadUrl: `/papers/sat/sat-test-${n}.pdf`,
   answersUrl: `/papers/sat/sat-test-${n}-answers.pdf`,
