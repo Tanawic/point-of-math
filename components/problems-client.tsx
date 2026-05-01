@@ -86,7 +86,7 @@ function CompCard({ c }: { c: Competition }) {
             rel="noopener noreferrer"
             className="flex-1 font-mono text-[11px] uppercase tracking-widest bg-ink text-paper px-3 py-2.5 text-center hover:bg-muted transition-colors"
           >
-            Past Papers →
+            {c.hasPastPapers ? 'Past Papers →' : 'Official Site →'}
           </a>
           {c.solutionsUrl && c.solutionsUrl !== c.url && (
             <a
