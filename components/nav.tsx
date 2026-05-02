@@ -5,12 +5,13 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
 const links = [
-  { href: '/papers',   label: 'Papers'   },
-  { href: '/sheets',   label: 'Sheets'   },
-  { href: '/problems', label: 'Problems' },
-  { href: '/videos',   label: 'Videos'   },
-  { href: '/courses',  label: 'Courses'  },
-  { href: '/about',    label: 'About'    },
+  { href: '/papers',       label: 'Papers'       },
+  { href: '/sheets',       label: 'Sheets'       },
+  { href: '/problems',     label: 'Problems'     },
+  { href: '/competitions', label: 'Competitions' },
+  { href: '/videos',       label: 'Videos'       },
+  { href: '/courses',      label: 'Courses'      },
+  { href: '/about',        label: 'About'        },
 ]
 
 export default function Nav() {
