@@ -10,8 +10,8 @@ export interface ExamEvent {
   url?: string
 }
 
-// Approximate annual exam windows — dates shift slightly each year.
-// We use these to compute "days until next occurrence" dynamically.
+// Only open-registration competitions with confirmed annual windows.
+// Dates reflect typical scheduling — verify exact date at organiser's site before registering.
 export const EXAM_EVENTS: ExamEvent[] = [
   {
     id: 'soawn-r1',
@@ -19,16 +19,7 @@ export const EXAM_EVENTS: ExamEvent[] = [
     nameFull: 'สอวน. คณิตศาสตร์ รอบแรก',
     region: 'Thailand',
     month: 10, day: 15,
-    note: 'ประมาณกลางเดือน ต.ค.',
-    url: 'https://www.posn.or.th/th/competition/science/math',
-  },
-  {
-    id: 'soawn-r2',
-    name: 'สอวน. ค่าย 1',
-    nameFull: 'สอวน. คณิตศาสตร์ ค่าย 1',
-    region: 'Thailand',
-    month: 12, day: 10,
-    note: 'ประมาณต้นเดือน ธ.ค.',
+    note: 'ช่วงกลาง ต.ค. — ตรวจสอบวันจริงที่ posn.or.th',
     url: 'https://www.posn.or.th/th/competition/science/math',
   },
   {
@@ -37,25 +28,16 @@ export const EXAM_EVENTS: ExamEvent[] = [
     nameFull: 'Thailand International Mathematical Olympiad — Heat Round',
     region: 'Thailand',
     month: 11, day: 5,
-    note: 'ต้นพ.ย. — ป.3 ถึง ม.6',
-    url: 'https://thaimath.org/timo',
-  },
-  {
-    id: 'timo-final',
-    name: 'TIMO Final',
-    nameFull: 'Thailand International Mathematical Olympiad — Final Round',
-    region: 'Thailand',
-    month: 1, day: 20,
-    note: 'กลางม.ค. — เฉพาะผู้ผ่าน Heat',
-    url: 'https://thaimath.org/timo',
+    note: 'ช่วงต้น พ.ย. — ป.3 ถึง ม.6 — ตรวจสอบวันจริงที่ thaiimo.com',
+    url: 'https://www.thaiimo.com',
   },
   {
     id: 'kvis',
     name: 'KVIS รอบ 1',
-    nameFull: 'โรงเรียนกำเนิดวิทย์ — รอบแรก',
+    nameFull: 'โรงเรียนกำเนิดวิทย์ — สอบคัดเลือกรอบแรก',
     region: 'Thailand',
     month: 2, day: 1,
-    note: 'ประมาณต้นก.พ.',
+    note: 'ช่วงต้น ก.พ. — ตรวจสอบวันจริงที่ kvis.ac.th',
     url: 'https://www.kvis.ac.th',
   },
   {
@@ -63,8 +45,8 @@ export const EXAM_EVENTS: ExamEvent[] = [
     name: 'PAT 1',
     nameFull: 'ความถนัดทางคณิตศาสตร์ (TCAS)',
     region: 'Thailand',
-    month: 3, day: 10,
-    note: 'ประมาณมี.ค. (TCAS)',
+    month: 3, day: 22,
+    note: 'ช่วงปลาย มี.ค. ตามกำหนด TCAS — ตรวจสอบที่ mytcas.com',
     url: 'https://www.mytcas.com',
   },
   {
@@ -72,54 +54,18 @@ export const EXAM_EVENTS: ExamEvent[] = [
     name: 'AMC 10/12',
     nameFull: 'American Mathematics Competition 10/12',
     region: 'USA',
-    month: 11, day: 8,
-    note: 'ต้นพ.ย. (สมัครล่วงหน้า 1 เดือน)',
+    month: 11, day: 6,
+    note: 'ต้น พ.ย. — สมัครผ่านโรงเรียนหรือ MAA ล่วงหน้า 1 เดือน',
     url: 'https://maa.org/math-competitions',
-  },
-  {
-    id: 'aime',
-    name: 'AIME',
-    nameFull: 'American Invitational Mathematics Examination',
-    region: 'USA',
-    month: 3, day: 20,
-    note: 'ประมาณปลายมี.ค.',
-    url: 'https://maa.org/math-competitions',
-  },
-  {
-    id: 'apmo',
-    name: 'APMO',
-    nameFull: 'Asian Pacific Mathematics Olympiad',
-    region: 'Asia-Pacific',
-    month: 3, day: 10,
-    note: 'ประมาณมี.ค. — สำหรับนักเรียน ม.ปลาย',
-    url: 'https://www.apmo-official.org',
-  },
-  {
-    id: 'imo',
-    name: 'IMO',
-    nameFull: 'International Mathematical Olympiad',
-    region: 'International',
-    month: 7, day: 10,
-    note: 'กรกฎาคม — ทีมชาติ 6 คน',
-    url: 'https://www.imo-official.org',
-  },
-  {
-    id: 'jbmo',
-    name: 'JBMO',
-    nameFull: 'Junior Balkan Mathematical Olympiad',
-    region: 'Europe',
-    month: 6, day: 20,
-    note: 'ปลายมิ.ย.',
-    url: 'https://artofproblemsolving.com/wiki/index.php/JBMO',
   },
   {
     id: 'hkimo-heat',
     name: 'HKIMO Heat',
-    nameFull: 'Hong Kong International Mathematical Olympiad — Heat',
+    nameFull: 'Hong Kong International Mathematical Olympiad — Heat Round',
     region: 'Asia-Pacific',
-    month: 12, day: 5,
-    note: 'ต้นธ.ค.',
-    url: 'https://www.hkmo.com.hk',
+    month: 12, day: 7,
+    note: 'ช่วงต้น ธ.ค. — ตรวจสอบวันจริงที่ hkimo.com',
+    url: 'https://www.hkimo.com',
   },
 ]
 
