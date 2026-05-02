@@ -121,6 +121,34 @@ export const EXAM_EVENTS: ExamEvent[] = [
     note: 'ต้นธ.ค.',
     url: 'https://www.hkmo.com.hk',
   },
+  // ─── School Open (approximate windows) ──────────────────────────────────────
+  {
+    id: 'mwit-open',
+    name: 'MWIT Open',
+    nameFull: 'การแข่งขันคณิตศาสตร์เปิด มหิดลวิทยานุสรณ์',
+    region: 'School Open',
+    month: 11, day: 20,
+    note: 'ประมาณ พ.ย.–ธ.ค. — ติดตาม Facebook โรงเรียน',
+    url: 'https://www.mwit.ac.th',
+  },
+  {
+    id: 'benchama-open',
+    name: 'เบญจมมหาราช Open',
+    nameFull: 'การแข่งขันคณิตศาสตร์เปิดโรงเรียนเบญจมมหาราช',
+    region: 'School Open',
+    month: 12, day: 15,
+    note: 'ประมาณ ธ.ค.–ม.ค. — ติดตาม Facebook โรงเรียน',
+    url: 'https://www.benchama.ac.th',
+  },
+  {
+    id: 'roietwit-open',
+    name: 'ร้อยเอ็ดวิทยาลัย Open',
+    nameFull: 'การแข่งขันคณิตศาสตร์เปิดโรงเรียนร้อยเอ็ดวิทยาลัย',
+    region: 'School Open',
+    month: 11, day: 10,
+    note: 'ประมาณ พ.ย. — ติดตาม Facebook โรงเรียน',
+    url: 'https://www.roietwit.ac.th',
+  },
 ]
 
 /** Returns the next calendar date (year auto-advances) for a given month/day */

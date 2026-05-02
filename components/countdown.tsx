@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react'
 import { upcomingExams } from '@/lib/exam-dates'
 
 const REGION_COLOR: Record<string, string> = {
-  Thailand:       'bg-ink text-paper',
-  'Asia-Pacific': 'border border-ink text-ink',
-  International:  'border border-ink text-ink',
-  USA:            'border border-rule text-muted',
-  Europe:         'border border-rule text-muted',
+  Thailand:        'bg-ink text-paper',
+  'School Open':   'border border-dashed border-ink text-ink',
+  'Asia-Pacific':  'border border-ink text-ink',
+  International:   'border border-ink text-ink',
+  USA:             'border border-rule text-muted',
+  Europe:          'border border-rule text-muted',
 }
 
 function regionStyle(region: string) {

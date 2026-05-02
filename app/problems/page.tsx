@@ -55,6 +55,47 @@ export default function ProblemsPage() {
         </div>
       </section>
 
+      {/* School Open callout */}
+      <section className="mx-auto max-w-6xl px-6 md:px-10 pt-8 pb-0">
+        <div className="border border-dashed border-ink p-6 flex flex-col md:flex-row md:items-start gap-6">
+          <div className="flex-1">
+            <div className="font-mono text-[10px] uppercase tracking-widest text-muted mb-2">
+              School Open Competitions · การแข่งขันเปิดของโรงเรียน
+            </div>
+            <p className="font-sans text-[14px] text-ink leading-relaxed max-w-2xl">
+              นอกจากการแข่งขันระดับชาติ–นานาชาติแล้ว{' '}
+              <strong>หลายโรงเรียนยังจัดการแข่งขันเปิด</strong>{' '}
+              ที่รับนักเรียนจากทุกสถาบัน — เหมาะสำหรับสะสมประสบการณ์และเตรียมความพร้อมก่อนแข่งระดับสูง
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {[
+                'MWIT Open',
+                'เบญจมมหาราช',
+                'ร้อยเอ็ดวิทยาลัย',
+                'สวนกุหลาบ',
+                'สาธิตจุฬาฯ',
+                'เตรียมอุดม',
+              ].map((s) => (
+                <span
+                  key={s}
+                  className="font-mono text-[10px] uppercase tracking-widest border border-ink text-ink px-2 py-1"
+                >
+                  {s}
+                </span>
+              ))}
+              <span className="font-mono text-[10px] text-muted px-2 py-1">+ อีกมาก</span>
+            </div>
+          </div>
+          <div className="shrink-0 self-center md:self-start border border-rule px-5 py-3 text-center">
+            <div className="font-mono text-[10px] uppercase tracking-widest text-muted">วิธีค้นหา</div>
+            <div className="font-mono text-[12px] text-ink mt-1">
+              ภูมิภาค → <strong>School Open</strong>
+            </div>
+            <div className="font-mono text-[9px] text-muted mt-1">ในตัวกรองด้านล่าง</div>
+          </div>
+        </div>
+      </section>
+
       {/* Interactive search section */}
       <section className="mx-auto max-w-6xl px-6 md:px-10 py-10">
         <ProblemsClient />

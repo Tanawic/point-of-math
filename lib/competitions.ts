@@ -1,6 +1,7 @@
 export type Level = 'Primary' | 'Junior' | 'Senior' | 'Olympiad' | 'All Levels'
 export type Region =
   | 'Thailand'
+  | 'School Open'
   | 'Asia-Pacific'
   | 'Southeast Asia'
   | 'International'
@@ -99,6 +100,92 @@ export const ALL_COMPETITIONS: Competition[] = [
     url: 'https://www.posn.or.th/en/examination/',
     difficulty: 3,
     hasPastPapers: true,
+  },
+
+  // ─── SCHOOL OPEN (Thailand) ──────────────────────────────────────────────────
+  {
+    id: 'mwit-open',
+    name: 'MWIT Open',
+    fullName: 'การแข่งขันคณิตศาสตร์เปิด มหิดลวิทยานุสรณ์',
+    nameThai: 'โรงเรียนมหิดลวิทยานุสรณ์',
+    description: 'การแข่งขันคณิตศาสตร์เปิด จัดโดยโรงเรียนมหิดลวิทยานุสรณ์ — ระดับยากใกล้เคียง สอวน. ค่าย 1 รับนักเรียน ม.ต้น–ม.ปลายจากทั่วประเทศ',
+    levels: ['Junior', 'Senior'],
+    region: 'School Open',
+    topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+    url: 'https://www.mwit.ac.th',
+    difficulty: 3,
+    hasPastPapers: false,
+    note: 'ติดตามกำหนดการทาง Facebook โรงเรียน / จัดประมาณ พ.ย.–ธ.ค.',
+  },
+  {
+    id: 'benchama-open',
+    name: 'เบญจมมหาราช Open',
+    fullName: 'การแข่งขันคณิตศาสตร์เปิดโรงเรียนเบญจมมหาราช',
+    nameThai: 'โรงเรียนเบญจมมหาราช จ.อุบลราชธานี',
+    description: 'การแข่งขันคณิตศาสตร์เปิด จัดโดยโรงเรียนเบญจมมหาราช อุบลราชธานี — รับนักเรียนจากทุกโรงเรียนระดับ ม.ต้น–ม.ปลาย',
+    levels: ['Junior', 'Senior'],
+    region: 'School Open',
+    topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+    url: 'https://www.benchama.ac.th',
+    difficulty: 2,
+    hasPastPapers: false,
+    note: 'ติดตามกำหนดการทาง Facebook โรงเรียน / จัดประมาณ พ.ย.–ม.ค.',
+  },
+  {
+    id: 'roietwit-open',
+    name: 'ร้อยเอ็ดวิทยาลัย Open',
+    fullName: 'การแข่งขันคณิตศาสตร์เปิดโรงเรียนร้อยเอ็ดวิทยาลัย',
+    nameThai: 'โรงเรียนร้อยเอ็ดวิทยาลัย จ.ร้อยเอ็ด',
+    description: 'การแข่งขันคณิตศาสตร์เปิด จัดโดยโรงเรียนร้อยเอ็ดวิทยาลัย — รับนักเรียนจากภาคอีสานและทั่วประเทศ ม.ต้น–ม.ปลาย',
+    levels: ['Junior', 'Senior'],
+    region: 'School Open',
+    topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+    url: 'https://www.roietwit.ac.th',
+    difficulty: 2,
+    hasPastPapers: false,
+    note: 'ติดตามกำหนดการทาง Facebook โรงเรียน',
+  },
+  {
+    id: 'sk-open',
+    name: 'สวนกุหลาบ Open',
+    fullName: 'การแข่งขันคณิตศาสตร์เปิดโรงเรียนสวนกุหลาบวิทยาลัย',
+    nameThai: 'โรงเรียนสวนกุหลาบวิทยาลัย กรุงเทพฯ',
+    description: 'การแข่งขันคณิตศาสตร์เปิด จัดโดยโรงเรียนสวนกุหลาบวิทยาลัย กรุงเทพฯ — รับนักเรียนจากทั่วประเทศ ม.ต้น–ม.ปลาย',
+    levels: ['Junior', 'Senior'],
+    region: 'School Open',
+    topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+    url: 'https://www.sk.ac.th',
+    difficulty: 2,
+    hasPastPapers: false,
+    note: 'ติดตามกำหนดการทาง Facebook โรงเรียน',
+  },
+  {
+    id: 'satitchula-open',
+    name: 'สาธิตจุฬาฯ Open',
+    fullName: 'การแข่งขันคณิตศาสตร์เปิดโรงเรียนสาธิตจุฬาลงกรณ์มหาวิทยาลัย',
+    nameThai: 'โรงเรียนสาธิตจุฬาลงกรณ์มหาวิทยาลัย กรุงเทพฯ',
+    description: 'การแข่งขันคณิตศาสตร์เปิด จัดโดยโรงเรียนสาธิตจุฬาฯ — รับนักเรียน ม.ต้น–ม.ปลาย จากทั่วประเทศ',
+    levels: ['Junior', 'Senior'],
+    region: 'School Open',
+    topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+    url: 'https://www.satitchula.ac.th',
+    difficulty: 2,
+    hasPastPapers: false,
+    note: 'ติดตามกำหนดการทาง Facebook โรงเรียน',
+  },
+  {
+    id: 'triam-open',
+    name: 'เตรียมอุดม Open',
+    fullName: 'การแข่งขันคณิตศาสตร์เปิดโรงเรียนเตรียมอุดมศึกษา',
+    nameThai: 'โรงเรียนเตรียมอุดมศึกษา กรุงเทพฯ',
+    description: 'การแข่งขันคณิตศาสตร์เปิด จัดโดยโรงเรียนเตรียมอุดมศึกษา — ระดับ ม.ปลาย รับสมัครจากทั่วประเทศ',
+    levels: ['Senior'],
+    region: 'School Open',
+    topics: ['Algebra', 'Geometry', 'Number Theory', 'Combinatorics'],
+    url: 'https://www.triamudom.ac.th',
+    difficulty: 3,
+    hasPastPapers: false,
+    note: 'ติดตามกำหนดการทาง Facebook โรงเรียน',
   },
 
   // ─── SOUTHEAST ASIA ─────────────────────────────────────────────────────────
@@ -490,7 +577,7 @@ export const ALL_COMPETITIONS: Competition[] = [
 
 // Unique regions + levels for filter UI
 export const ALL_REGIONS = [
-  'Thailand', 'Southeast Asia', 'Asia-Pacific',
+  'Thailand', 'School Open', 'Southeast Asia', 'Asia-Pacific',
   'International', 'USA', 'Europe', 'Australia', 'Online',
 ] as const
 
