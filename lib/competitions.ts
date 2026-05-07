@@ -100,6 +100,19 @@ export const ALL_COMPETITIONS: Competition[] = [
     difficulty: 3,
     hasPastPapers: true,
   },
+  {
+    id: 'tedet',
+    name: 'TEDET',
+    fullName: 'Thailand Educational Development and Evaluation Test (TEDET)',
+    nameThai: 'ทดสอบและพัฒนาอัจฉริยภาพทางคณิตศาสตร์และวิทยาศาสตร์',
+    description: 'ข้อสอบวัดอัจฉริยภาพด้านคณิตศาสตร์และวิทยาศาสตร์ สำหรับ ป.2–ม.3 จัดโดยมูลนิธิสอวน. ข้อสอบย้อนหลังพร้อมเฉลยตั้งแต่ TME 2553 จนถึงปัจจุบัน',
+    levels: ['Primary', 'Junior'],
+    region: 'Thailand',
+    topics: ['Algebra', 'Number Theory', 'Geometry', 'Logic'],
+    url: 'https://www.tedet.or.th/main/exam-library.asp',
+    difficulty: 2,
+    hasPastPapers: true,
+  },
 
   // ─── SOUTHEAST ASIA ─────────────────────────────────────────────────────────
   {
